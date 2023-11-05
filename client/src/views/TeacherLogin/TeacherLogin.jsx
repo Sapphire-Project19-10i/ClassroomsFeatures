@@ -79,7 +79,6 @@ export default function TeacherLogin() {
           />
         </form>
       </div>
-      <TextEditor />
     </div>
   );
 }
