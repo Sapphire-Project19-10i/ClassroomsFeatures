@@ -50,6 +50,7 @@ export default function Classroom({
             setSearchParams={setSearchParams}
             classroomId={id}
           />
+          </TabPane>
         <TabPane tab='Syllabus' key='syllabus'>
           <SavedWorkSpaceTab
             searchParams={searchParams}
