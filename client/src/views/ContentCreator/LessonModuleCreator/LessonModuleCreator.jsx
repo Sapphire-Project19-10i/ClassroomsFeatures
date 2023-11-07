@@ -9,6 +9,7 @@ import {
 } from "../../../Utils/requests"
 import ActivityEditor from "../ActivityEditor/ActivityEditor"
 import "./LessonModuleCreator.less"
+import TextEditor from "../../../components/TextEditor"
 
 export default function LessonModuleCreator({
   setLessonModuleList,
@@ -116,7 +117,7 @@ export default function LessonModuleCreator({
       <Modal
         title="Create a Lesson"
         open={visible}
-        width="35vw"
+        width="80vw"
         onCancel={handleCancel}
         footer={null}
       >
@@ -172,7 +173,7 @@ export default function LessonModuleCreator({
             />
           </Form.Item>
           <Form.Item label="Description">
-            <Input.TextArea
+            <TextEditor
               rows={3}
               required
               onChange={e => {
