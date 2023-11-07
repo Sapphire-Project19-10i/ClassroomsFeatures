@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-
+import TextEditor from '../TextEditor';
 
 export default function SyllabusTab({classroomId}){
 
@@ -9,7 +9,9 @@ export default function SyllabusTab({classroomId}){
             <h1>Syllabus</h1>
           </div>
           <div>
-            
+            <TextEditor>
+              
+            </TextEditor>
           </div>
         </div>
     )

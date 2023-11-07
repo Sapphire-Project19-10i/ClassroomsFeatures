@@ -57,7 +57,6 @@ export default function Classroom({
             classroomId={id}
           />
         </TabPane>
-
       </Tabs>
     </div>
   );
