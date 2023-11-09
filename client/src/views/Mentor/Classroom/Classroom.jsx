@@ -40,6 +40,7 @@ export default function Classroom({
             selectedActivity={selectedActivity}
             setSelectedActivity={setSelectedActivity}
             viewing={viewing}
+  
           />
         </TabPane>
         <TabPane tab='Roster' key='roster'>

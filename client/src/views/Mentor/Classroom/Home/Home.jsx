@@ -10,7 +10,7 @@ import DisplayCodeModal from './DisplayCodeModal';
 import MentorActivityDetailModal from './MentorActivityDetailModal';
 import LessonModuleModal from './LessonModuleSelect/LessonModuleModal';
 import { message, Tag } from 'antd';
-import { useNavigate } from 'react-router-dom';
+import { useNavigate, Link } from 'react-router-dom';
 
 export default function Home({ classroomId, viewing }) {
   const [classroom, setClassroom] = useState({});
@@ -253,6 +253,11 @@ export default function Home({ classroomId, viewing }) {
               />
             </div>
           )}
+          <div>
+          <Link to="/ccdashboard">
+            <button id="view-activity-button">Create Content</button>
+          </Link>
+          </div>
         </div>
       </div>
     </div>
