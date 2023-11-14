@@ -19,6 +19,7 @@ import StudentLogin from './views/StudentLogin/StudentLogin';
 import ForgetPassword from './views/TeacherLogin/ForgetPassword';
 import ResetPassword from './views/TeacherLogin/ResetPassword';
 import TeacherLogin from './views/TeacherLogin/TeacherLogin';
+import LessonEditor from './views/ContentCreator/LessonEditor/LessonEditor';
 
 const App = () => {
   return (

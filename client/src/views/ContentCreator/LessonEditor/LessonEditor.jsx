@@ -6,6 +6,7 @@ import {
   updateLessonModule,
 } from "../../../Utils/requests"
 import ActivityEditor from "../ActivityEditor/ActivityEditor"
+import Calendar from 'react-calendar'
 
 export default function LessonEditor({
   learningStandard,
@@ -21,6 +22,7 @@ export default function LessonEditor({
   const [link, setLink] = useState("")
   const [linkError, setLinkError] = useState(false)
   const [displayName, setDisplayName] = useState(learningStandard.name)
+  const [date, setDate] = useState(new Date())
   // eslint-disable-next-line
   const [_, setSearchParams] = useSearchParams()
 
@@ -127,6 +129,10 @@ export default function LessonEditor({
               placeholder="Enter lesson standards"
             />
           </Form.Item>
+          <Form.Item id="form-label" label="Date">
+            <Calendar />
+          </Form.Item>
+
           <Form.Item label="Link to Additional Resources (Optional)">
             <Input
               onChange={e => {
