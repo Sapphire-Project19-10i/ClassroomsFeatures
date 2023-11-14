@@ -12,6 +12,7 @@
     "http-server": "^0.12.3",
     "less": "^4.1.3",
     "react": "^18.2.0",
+    "react-calendar": "^4.6.1",
     "react-dom": "^18.2.0",
     "react-hooks-global-state": "^2.1.0",
     "react-papaparse": "^3.17.1",
