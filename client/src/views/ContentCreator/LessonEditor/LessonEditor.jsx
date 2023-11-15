@@ -1,4 +1,4 @@
-import { Button, Form, Input, message, Modal } from "antd"
+import { Button, Form, Input, message, Modal, DatePicker } from "antd"
 import React, { useEffect, useState } from "react"
 import { useSearchParams } from "react-router-dom"
 import {
@@ -22,7 +22,8 @@ export default function LessonEditor({
   const [link, setLink] = useState("")
   const [linkError, setLinkError] = useState(false)
   const [displayName, setDisplayName] = useState(learningStandard.name)
-  const [date, setDate] = useState(new Date())
+  const [releaseDate, setReleaseDate] = useState(null);
+  const [closeDate, setCloseDate] = useState(null);
   // eslint-disable-next-line
   const [_, setSearchParams] = useSearchParams()
 
@@ -33,6 +34,8 @@ export default function LessonEditor({
     setDescription(res.data.expectations)
     setStandards(res.data.standards)
     setLink(res.data.link)
+    setReleaseDate(res.data.releaseDate ? moment(res.data.releaseDate) : null);
+    setCloseDate(res.data.closeDate ? moment(res.data.closeDate) : null);
     setLinkError(false)
   }
 
@@ -58,7 +61,9 @@ export default function LessonEditor({
       name,
       description,
       standards,
-      link
+      link,
+      releaseDate,
+      closeDate
     )
     if (response.err) {
       message.error("Fail to update lesson")
@@ -129,9 +134,9 @@ export default function LessonEditor({
               placeholder="Enter lesson standards"
             />
           </Form.Item>
-          <Form.Item id="form-label" label="Date">
+          {/*<Form.Item id="form-label" label="Date">
             <Calendar />
-          </Form.Item>
+          </Form.Item>*/}
 
           <Form.Item label="Link to Additional Resources (Optional)">
             <Input
@@ -142,6 +147,20 @@ export default function LessonEditor({
               style={linkError ? { backgroundColor: "#FFCCCC" } : {}}
               value={link}
               placeholder="Enter a link"
+            />
+          </Form.Item>
+          <Form.Item id="form-label" label="Release Date">
+            <DatePicker
+              value={releaseDate}
+              onChange={(date) => setReleaseDate(date)}
+              style={{ width: "100%" }}
+            />
+          </Form.Item>
+          <Form.Item id="form-label" label="Close Date">
+            <DatePicker
+              value={closeDate}
+              onChange={(date) => setCloseDate(date)}
+              style={{ width: "100%" }}
             />
           </Form.Item>
           <Form.Item

@@ -604,6 +604,12 @@
                 "link": {
                   "type": "string"
                 },
+                "releaseDate": {
+                  "type": "string"
+                },
+                "closeDate": {
+                  "type": "string"
+                },
                 "created_by": {
                   "type": "string"
                 },
