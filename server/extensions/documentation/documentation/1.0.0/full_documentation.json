@@ -14,8 +14,7 @@
       "name": "Apache 2.0",
       "url": "https://www.apache.org/licenses/LICENSE-2.0.html"
     },
-    "x-generation-date": "11/07/2023 2:45:29 AM"
-    "x-generation-date": "11/02/2023 5:39:33 PM"
+    "x-generation-date": "11/14/2023 11:47:15 PM"
   },
   "x-strapi-config": {
     "path": "/documentation",
@@ -11780,6 +11779,12 @@
               "link": {
                 "type": "string"
               },
+              "due_date": {
+                "type": "string"
+              },
+              "start_date": {
+                "type": "string"
+              },
               "created_by": {
                 "type": "string"
               },
@@ -11874,6 +11879,14 @@
           },
           "activity_template": {
             "type": "string"
+          },
+          "Due_Date": {
+            "type": "string",
+            "format": "date-time"
+          },
+          "Assigned_Date": {
+            "type": "string",
+            "format": "date-time"
           }
         }
       },
@@ -11918,6 +11931,14 @@
           },
           "activity_template": {
             "type": "string"
+          },
+          "Due_Date": {
+            "type": "string",
+            "format": "date-time"
+          },
+          "Assigned_Date": {
+            "type": "string",
+            "format": "date-time"
           },
           "created_by": {
             "type": "string"
@@ -12698,6 +12719,12 @@
                 "activity_template": {
                   "type": "string"
                 },
+                "Due_Date": {
+                  "type": "string"
+                },
+                "Assigned_Date": {
+                  "type": "string"
+                },
                 "created_by": {
                   "type": "string"
                 },
@@ -12834,6 +12861,12 @@
                 "activity_template": {
                   "type": "string"
                 },
+                "Due_Date": {
+                  "type": "string"
+                },
+                "Assigned_Date": {
+                  "type": "string"
+                },
                 "created_by": {
                   "type": "string"
                 },
@@ -12887,6 +12920,14 @@
           },
           "link": {
             "type": "string"
+          },
+          "due_date": {
+            "type": "string",
+            "format": "date-time"
+          },
+          "start_date": {
+            "type": "string",
+            "format": "date-time"
           }
         }
       },
@@ -12919,6 +12960,14 @@
           },
           "link": {
             "type": "string"
+          },
+          "due_date": {
+            "type": "string",
+            "format": "date-time"
+          },
+          "start_date": {
+            "type": "string",
+            "format": "date-time"
           },
           "created_by": {
             "type": "string"
@@ -13169,6 +13218,12 @@
                 }
               },
               "activity_template": {
+                "type": "string"
+              },
+              "Due_Date": {
+                "type": "string"
+              },
+              "Assigned_Date": {
                 "type": "string"
               },
               "created_by": {
@@ -13550,6 +13605,12 @@
               "link": {
                 "type": "string"
               },
+              "due_date": {
+                "type": "string"
+              },
+              "start_date": {
+                "type": "string"
+              },
               "created_by": {
                 "type": "string"
               },
@@ -13893,6 +13954,12 @@
                 "type": "string"
               },
               "link": {
+                "type": "string"
+              },
+              "due_date": {
+                "type": "string"
+              },
+              "start_date": {
                 "type": "string"
               },
               "created_by": {
@@ -14248,6 +14315,12 @@
               "activity_template": {
                 "type": "string"
               },
+              "Due_Date": {
+                "type": "string"
+              },
+              "Assigned_Date": {
+                "type": "string"
+              },
               "created_by": {
                 "type": "string"
               },
@@ -14404,6 +14477,12 @@
                   "type": "string"
                 },
                 "link": {
+                  "type": "string"
+                },
+                "due_date": {
+                  "type": "string"
+                },
+                "start_date": {
                   "type": "string"
                 },
                 "created_by": {
