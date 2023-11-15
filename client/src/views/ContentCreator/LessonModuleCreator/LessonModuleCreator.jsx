@@ -1,4 +1,4 @@
-import { Button, Form, Input, message, Modal } from "antd"
+import { Button, Calendar, Form, Input, message, Modal } from "antd"
 import React, { useEffect, useState } from "react"
 import { useSearchParams } from "react-router-dom"
 import {
@@ -26,6 +26,8 @@ export default function LessonModuleCreator({
   const [link, setLink] = useState("")
   const [linkError, setLinkError] = useState(false)
   const [learningStandardObj, setLessonModuleObj] = useState("")
+  const [dueDate, setDueDate] = useState("")
+  const [startDate, setStartDate] = useState("")
   // eslint-disable-next-line
   const [_, setSearchParams] = useSearchParams()
 
@@ -49,6 +51,8 @@ export default function LessonModuleCreator({
     setLinkError(false)
     setNumOfActivityLevels("")
     setVisible(true)
+    setStartDate(new Date())
+    setDueDate(new Date())
   }
 
   const handleCancel = () => {
@@ -183,6 +187,23 @@ export default function LessonModuleCreator({
               placeholder="Enter lesson description"
             />
           </Form.Item>
+          <Calendar />
+          {/* <Form.Item id="form-label" label="Date">
+            <Calendar 
+              onChange={e => setDueDate(e.target.value)}
+              value={due_date}
+              required
+              placeholder="Enter due date"
+            />
+          </Form.Item>
+          <Form.Item id="form-label" label="Date">
+            <Calendar 
+              onChange={e => setStartDate(e.target.value)}
+              value={start_date}
+              required
+              placeholder="Enter start date"
+            />
+          </Form.Item> */}
           <Form.Item label="Standards">
             <Input
               onChange={e => {

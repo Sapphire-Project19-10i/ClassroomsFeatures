@@ -129,10 +129,6 @@ export default function LessonEditor({
               placeholder="Enter lesson standards"
             />
           </Form.Item>
-          <Form.Item id="form-label" label="Date">
-            <Calendar />
-          </Form.Item>
-
           <Form.Item label="Link to Additional Resources (Optional)">
             <Input
               onChange={e => {

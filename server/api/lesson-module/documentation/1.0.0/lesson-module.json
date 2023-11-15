@@ -647,6 +647,14 @@
           },
           "link": {
             "type": "string"
+          },
+          "due_date": {
+            "type": "string",
+            "format": "date-time"
+          },
+          "start_date": {
+            "type": "string",
+            "format": "date-time"
           }
         }
       },
@@ -679,6 +687,14 @@
           },
           "link": {
             "type": "string"
+          },
+          "due_date": {
+            "type": "string",
+            "format": "date-time"
+          },
+          "start_date": {
+            "type": "string",
+            "format": "date-time"
           },
           "created_by": {
             "type": "string"

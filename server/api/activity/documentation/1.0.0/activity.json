@@ -792,6 +792,12 @@
               "link": {
                 "type": "string"
               },
+              "due_date": {
+                "type": "string"
+              },
+              "start_date": {
+                "type": "string"
+              },
               "created_by": {
                 "type": "string"
               },

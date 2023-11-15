@@ -36,6 +36,12 @@
     },
     "link": {
       "type": "string"
+    },
+    "due_date": {
+      "type": "datetime"
+    },
+    "start_date": {
+      "type": "datetime"
     }
   }
 }
