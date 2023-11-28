@@ -376,7 +376,9 @@ export const createLessonModule = async (
   number,
   unit,
   standards,
-  link
+  link,
+  releaseDate,
+  closeDate
 ) =>
   makeRequest({
     method: POST,
@@ -388,6 +390,8 @@ export const createLessonModule = async (
       unit,
       standards,
       link,
+      releaseDate,
+      closeDate,
     },
     auth: true,
     error: 'Login failed.',
