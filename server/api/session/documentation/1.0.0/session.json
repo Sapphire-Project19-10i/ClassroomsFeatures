@@ -828,6 +828,9 @@
               "closeDate": {
                 "type": "string"
               },
+              "description": {
+                "type": "string"
+              },
               "created_by": {
                 "type": "string"
               },

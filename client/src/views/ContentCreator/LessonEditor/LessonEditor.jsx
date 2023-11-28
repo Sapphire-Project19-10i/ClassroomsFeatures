@@ -120,13 +120,13 @@ export default function LessonEditor({
             />
           </Form.Item>
           <Form.Item id="form-label" label="Description">
-            <Input.TextArea
-              onChange={e => setDescription(e.target.value)}
-              value={description}
-              rows={3}
-              required
-              placeholder="Enter lesson description"
-            />
+            <TextEditor
+                rows={3}
+                required
+                onChange={e => setDescription("<h1>helloworld</h1>")}
+                value={description}
+                placeholder="Enter lesson description"
+              />
           </Form.Item>
           <Form.Item id="form-label" label="Standards">
             <Input

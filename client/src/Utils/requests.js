@@ -384,7 +384,7 @@ export const createLessonModule = async (
     method: POST,
     path: `${server}/lesson-modules`,
     data: {
-      expectations: description,
+      description: description,
       name,
       number,
       unit,
@@ -456,6 +456,7 @@ export const updateLessonModule = async (
   expectations,
   standards,
   link,
+  description,
   releaseDate,
   closeDate
 ) =>
@@ -467,6 +468,7 @@ export const updateLessonModule = async (
       standards,
       expectations,
       link,
+      description,
       releaseDate,
       closeDate,
     },

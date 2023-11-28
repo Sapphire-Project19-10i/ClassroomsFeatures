@@ -182,9 +182,7 @@ export default function LessonModuleCreator({
             <TextEditor
               rows={3}
               required
-              onChange={e => {
-                setDescription(e.target.value)
-              }}
+              onChange={e => setDescription(e.target.value)}
               value={description}
               placeholder="Enter lesson description"
             />
