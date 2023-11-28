@@ -6,8 +6,9 @@ import {
   updateLessonModule,
 } from "../../../Utils/requests"
 import ActivityEditor from "../ActivityEditor/ActivityEditor"
-import Calendar from 'react-calendar'
 import moment from 'moment';
+import "./LessonEditor.less"
+import TextEditor from "../../../components/TextEditor"
 
 export default function LessonEditor({
   learningStandard,
@@ -135,10 +136,6 @@ export default function LessonEditor({
               placeholder="Enter lesson standards"
             />
           </Form.Item>
-          {/*<Form.Item id="form-label" label="Date">
-            <Calendar />
-          </Form.Item>*/}
-
           <Form.Item label="Link to Additional Resources (Optional)">
             <Input
               onChange={e => {
