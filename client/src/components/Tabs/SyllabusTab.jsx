@@ -30,8 +30,10 @@ export default function SyllabusTab({searchParams, setSearchParams, classroomId}
   
   const handleGetHtmlContent = () => {
     if (editorRef) {
-      const htmlContent = editorRef.getHtml();
-      console.log('HTML Content:', htmlContent);
+      const htmlContent = editorRef.exportHtml();
+      console.log(htmlContent);
+      editorRef.importHtml("<h1>fdff</h1>");
+      console.log(htmlContent);
     }
   };
   
@@ -53,9 +55,9 @@ export default function SyllabusTab({searchParams, setSearchParams, classroomId}
       </div>
       <div id='content-creator-table-container'>
         <TextEditor
-          html={syllabus}
           ref={(ref) => (editorRef = ref)}
         />
+        <button onClick={handleGetHtmlContent}>aa</button>
       </div>
     </div>
   )
