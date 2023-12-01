@@ -28,6 +28,11 @@ class TextEditor extends React.Component
     this.toggleInlineStyle = this._toggleInlineStyle.bind(this);
   }
 
+  setHtml = (html) => {
+    const contentState = this.htmlToContentState(html);
+    this.setState({ editorState: EditorState.createWithContent(contentState) });
+  };
+
   getHtml = () => {
     const contentState = this.state.editorState.getCurrentContent();
     const htmlContent = stateToHTML(contentState);
