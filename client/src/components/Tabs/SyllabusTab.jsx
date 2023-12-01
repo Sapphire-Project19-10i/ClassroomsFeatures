@@ -9,8 +9,6 @@ import {
 export default function SyllabusTab({searchParams, setSearchParams, classroomId}){
   let editorRef;
   
-  const [syllabus, setSyllabus] = useState('');
-
 	useEffect(() => {
     const fetchData = async () => {
       let wsResponse;
@@ -20,9 +18,9 @@ export default function SyllabusTab({searchParams, setSearchParams, classroomId}
       else{
         wsResponse = await getSyllabi();
       }
-      
+            
       if(wsResponse.data){
-        setSyllabus(wsResponse.data.content);
+        editorRef.setHtml(wsResponse.data.content);
       }
     };
     fetchData();
@@ -30,9 +28,9 @@ export default function SyllabusTab({searchParams, setSearchParams, classroomId}
   
   const handleGetHtmlContent = () => {
     if (editorRef) {
-      const htmlContent = editorRef.exportHtml();
+      const htmlContent = editorRef.getHtml();
       console.log(htmlContent);
-      editorRef.importHtml("<h1>fdff</h1>");
+      editorRef.setHtml("<h1>fdff</h1>");
       console.log(htmlContent);
     }
   };
@@ -40,11 +38,8 @@ export default function SyllabusTab({searchParams, setSearchParams, classroomId}
   const handleSyllabus = async () => {
     let wsResponse;
     let content = 'hello';
-    if(syllabus){
-    }
-    else{
-      wsResponse = await createSyllabus(content, classroomId);
-    }
+    wsResponse = await createSyllabus(content, classroomId);
+
     console.log(wsResponse);
   }
 	

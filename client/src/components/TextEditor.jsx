@@ -26,10 +26,11 @@ class TextEditor extends React.Component
     this.mapKeyToEditorCommand = this._mapKeyToEditorCommand.bind(this);
     this.toggleBlockType = this._toggleBlockType.bind(this);
     this.toggleInlineStyle = this._toggleInlineStyle.bind(this);
+    this.placeholder = props.placeholder;
   }
 
   setHtml = (html) => {
-    const contentState = this.htmlToContentState(html);
+    const contentState = stateFromHTML(html);
     this.setState({ editorState: EditorState.createWithContent(contentState) });
   };
 
@@ -112,7 +113,7 @@ class TextEditor extends React.Component
             handleKeyCommand={this.handleKeyCommand}
             keyBindingFn={this.mapKeyToEditorCommand}
             onChange={this.onChange}
-            placeholder="Type..."
+            placeholder={this.placeholder}
             ref="editor"
             spellCheck={true}
           />
