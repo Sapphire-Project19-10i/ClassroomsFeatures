@@ -48,9 +48,8 @@
       "collection": "authorized-workspace"
     },
     "syllabus": {
-      "private": true,
-      "model": "syllabus",
-      "via": "classroom"
+      "via": "classroom",
+      "model": "syllabus"
     }
   }
 }

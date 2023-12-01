@@ -675,7 +675,7 @@ export const getClassroomWorkspace = async (id) =>
 
 export const createSyllabus = async (
   content,
-  classroomId,
+  classroom,
 ) =>
   makeRequest({
     method: POST,
@@ -683,7 +683,7 @@ export const createSyllabus = async (
     auth: true,
     data: {
       content,
-      classroomId,
+      classroom,
     },
     error: 'Unable to create syllabus',
   });
