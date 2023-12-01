@@ -14,7 +14,7 @@
       "name": "Apache 2.0",
       "url": "https://www.apache.org/licenses/LICENSE-2.0.html"
     },
-    "x-generation-date": "12/01/2023 9:33:18 PM"
+    "x-generation-date": "12/01/2023 10:51:07 PM"
   },
   "x-strapi-config": {
     "path": "/documentation",
@@ -3178,6 +3178,74 @@
         ]
       }
     },
+    "/classroom/discussion-boards/{id}": {
+      "get": {
+        "deprecated": false,
+        "description": "",
+        "responses": {
+          "200": {
+            "description": "Retrieve classroom document(s)",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "properties": {
+                    "foo": {
+                      "type": "string"
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "403": {
+            "description": "Forbidden",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "Not found",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            }
+          },
+          "default": {
+            "description": "unexpected error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            }
+          }
+        },
+        "summary": "",
+        "tags": [
+          "Classroom"
+        ],
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "description": "",
+            "deprecated": false,
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ]
+      }
+    },
     "/classrooms/join/{code}": {
       "get": {
         "deprecated": false,
@@ -3786,6 +3854,74 @@
                 "schema": {
                   "type": "integer",
                   "format": "int64"
+                }
+              }
+            }
+          },
+          "403": {
+            "description": "Forbidden",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "Not found",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            }
+          },
+          "default": {
+            "description": "unexpected error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            }
+          }
+        },
+        "summary": "",
+        "tags": [
+          "Discussion-board"
+        ],
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "description": "",
+            "deprecated": false,
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ]
+      }
+    },
+    "/discussion-boards/discussion-posts/{id}": {
+      "get": {
+        "deprecated": false,
+        "description": "",
+        "responses": {
+          "200": {
+            "description": "response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "properties": {
+                    "foo": {
+                      "type": "string"
+                    }
+                  }
                 }
               }
             }
@@ -14010,6 +14146,42 @@
                 "type": "string"
               }
             }
+          },
+          "discussion_boards": {
+            "type": "array",
+            "items": {
+              "required": [
+                "id",
+                "title",
+                "description"
+              ],
+              "properties": {
+                "id": {
+                  "type": "string"
+                },
+                "title": {
+                  "type": "string"
+                },
+                "description": {
+                  "type": "string"
+                },
+                "classroom": {
+                  "type": "string"
+                },
+                "discussion_posts": {
+                  "type": "array",
+                  "items": {
+                    "type": "string"
+                  }
+                },
+                "created_by": {
+                  "type": "string"
+                },
+                "updated_by": {
+                  "type": "string"
+                }
+              }
+            }
           }
         }
       },
@@ -14080,13 +14252,17 @@
       "Discussion-board": {
         "required": [
           "id",
-          "title"
+          "title",
+          "description"
         ],
         "properties": {
           "id": {
             "type": "string"
           },
           "title": {
+            "type": "string"
+          },
+          "description": {
             "type": "string"
           },
           "classroom": {
@@ -14161,14 +14337,16 @@
             "type": "array",
             "items": {
               "required": [
-                "id",
-                "text"
+                "id"
               ],
               "properties": {
                 "id": {
                   "type": "string"
                 },
-                "text": {
+                "name": {
+                  "type": "string"
+                },
+                "content": {
                   "type": "string"
                 },
                 "discussion_board": {
@@ -14187,10 +14365,14 @@
       },
       "NewDiscussion-board": {
         "required": [
-          "title"
+          "title",
+          "description"
         ],
         "properties": {
           "title": {
+            "type": "string"
+          },
+          "description": {
             "type": "string"
           },
           "classroom": {
@@ -14212,26 +14394,32 @@
       },
       "Discussion-post": {
         "required": [
-          "id",
-          "text"
+          "id"
         ],
         "properties": {
           "id": {
             "type": "string"
           },
-          "text": {
+          "name": {
+            "type": "string"
+          },
+          "content": {
             "type": "string"
           },
           "discussion_board": {
             "required": [
               "id",
-              "title"
+              "title",
+              "description"
             ],
             "properties": {
               "id": {
                 "type": "string"
               },
               "title": {
+                "type": "string"
+              },
+              "description": {
                 "type": "string"
               },
               "classroom": {
@@ -14254,11 +14442,11 @@
         }
       },
       "NewDiscussion-post": {
-        "required": [
-          "text"
-        ],
         "properties": {
-          "text": {
+          "name": {
+            "type": "string"
+          },
+          "content": {
             "type": "string"
           },
           "discussion_board": {
