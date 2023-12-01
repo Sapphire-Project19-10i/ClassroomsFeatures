@@ -599,7 +599,7 @@ export const submitBugReport = async (
       email,
       systemInfo,
     },
-    error: 'Unable to submit bug-report',
+    error: 'Unable to submit bug-report.',
   });
 
 export const getAuthorizedWorkspaces = async () =>
@@ -607,7 +607,7 @@ export const getAuthorizedWorkspaces = async () =>
     method: GET,
     path: `${server}/authorized-workspaces`,
     auth: true,
-    error: 'Unable to retrive cc worksapces',
+    error: 'Unable to retrive cc worksapces.',
   });
 
 export const getAuthorizedWorkspace = async (id) =>
@@ -615,7 +615,7 @@ export const getAuthorizedWorkspace = async (id) =>
     method: GET,
     path: `${server}/authorized-workspaces/${id}`,
     auth: true,
-    error: 'Unable to retrive cc workspace',
+    error: 'Unable to retrive cc workspace.',
   });
 
 export const createAuthorizedWorkspace = async (
@@ -636,8 +636,9 @@ export const createAuthorizedWorkspace = async (
       blocks,
       classroomId,
     },
-    error: 'Unable to create cc workspace',
+    error: 'Unable to create cc workspace.',
   });
+  
 export const getAuthorizedWorkspaceToolbox = async (id) =>
   makeRequest({
     method: GET,
@@ -655,14 +656,15 @@ export const updateAuthorizedWorkspace = async (id, template, blocks) =>
       template,
       blocks,
     },
-    error: 'Unable to create cc workspace',
+    error: 'Unable to create cc workspace.',
   });
+  
 export const deleteAuthorizedWorkspace = async (id) =>
   makeRequest({
     method: DELETE,
     path: `${server}/authorized-workspaces/${id}`,
     auth: true,
-    error: 'Unable to delete cc workspace',
+    error: 'Unable to delete cc workspace.',
   });
 
 export const getClassroomWorkspace = async (id) =>
@@ -670,13 +672,10 @@ export const getClassroomWorkspace = async (id) =>
     method: GET,
     path: `${server}/classroom/workspaces/${id}`,
     auth: true,
-    error: 'Unable to retrive classroom workspaces',
+    error: 'Unable to retrive classroom workspaces.',
   });
 
-export const createSyllabus = async (
-  content,
-  classroom,
-) =>
+export const createSyllabus = async (content, classroom) =>
   makeRequest({
     method: POST,
     path: `${server}/syllabi`,
@@ -685,8 +684,9 @@ export const createSyllabus = async (
       content,
       classroom,
     },
-    error: 'Unable to create syllabus',
+    error: 'Unable to create syllabus.',
   });
+  
 export const getSyllabus = async (id) =>
   makeRequest({
     method: GET,
@@ -694,13 +694,15 @@ export const getSyllabus = async (id) =>
     auth: true,
     error: 'Unable to retrive syllabus.',
   });
+  
 export const getSyllabi = async () =>
   makeRequest({
     method: GET,
     path: `${server}/syllabi`,
     auth: true,
-    error: 'Unable to retrive syllabus',
+    error: 'Unable to retrive syllabus.',
   });
+  
 export const updateSyllabus = async (id, content) =>
   makeRequest({
     method: PUT,
@@ -709,12 +711,111 @@ export const updateSyllabus = async (id, content) =>
     data: {
       content,
     },
-    error: 'Unable to update syllabus',
+    error: 'Unable to update syllabus.',
   });
+  
 export const deleteSyllabus = async (id) =>
   makeRequest({
     method: DELETE,
     path: `${server}/syllabi/${id}`,
     auth: true,
-    error: 'Unable to delete syllabus',
+    error: 'Unable to delete syllabus.',
+  });
+
+export const createDiscussionBoard = async (title, description, classroom) =>
+  makeRequest({
+    method: POST,
+    path: `${server}/discussion-boards`,
+    auth: true,
+    data: {
+      title,
+      description,
+      classroom,
+    },
+    error: 'Unable to create discussion board.',
+  });
+  
+export const getDiscussionBoard = async (id) =>
+  makeRequest({
+    method: GET,
+    path: `${server}/classroom/discussion-boards/${id}`,
+    auth: true,
+    error: 'Unable to retrive discussion board.',
+  });
+  
+export const getDiscussionBoards = async () =>
+  makeRequest({
+    method: GET,
+    path: `${server}/discussion-boards`,
+    auth: true,
+    error: 'Unable to retrive discussion board.',
+  });
+  
+export const updateDiscussionBoard = async (id, title, description) =>
+  makeRequest({
+    method: PUT,
+    path: `${server}/discussion-boards/${id}`,
+    auth: true,
+    data: {
+      title,
+      description,
+    },
+    error: 'Unable to update discussion board.',
+  });
+  
+export const deleteDiscussionBoard = async (id) =>
+  makeRequest({
+    method: DELETE,
+    path: `${server}/discussion-boards/${id}`,
+    auth: true,
+    error: 'Unable to delete discussion board.',
+  });
+
+export const createDiscussionPost = async (name, content, discussion_board) =>
+  makeRequest({
+    method: POST,
+    path: `${server}/discussion-posts`,
+    auth: true,
+    data: {
+      name,
+      content,
+      discussion_board,
+    },
+    error: 'Unable to create discussion post.',
+  });
+  
+export const getDiscussionPost = async (id) =>
+  makeRequest({
+    method: GET,
+    path: `${server}/discussion-boards/discussion-posts/${id}`,
+    auth: true,
+    error: 'Unable to retrive discussion post.',
+  });
+  
+export const getDiscussionPosts = async () =>
+  makeRequest({
+    method: GET,
+    path: `${server}/discussion-posts`,
+    auth: true,
+    error: 'Unable to retrive discussion post.',
+  });
+  
+export const updateDiscussionPost = async (id, name, content) =>
+  makeRequest({
+    method: PUT,
+    path: `${server}/discussion-posts/${id}`,
+    auth: true,
+    data: {
+      name,
+      content,
+    },
+    error: 'Unable to update discussion post.',
+  });
+  
+export const deleteDiscussionPost = async (id) =>
+  makeRequest({
+    method: DELETE,
+    path: `${server}/discussion-posts/${id}`,
+    auth: true,
+    error: 'Unable to delete discussion post.',
   });

@@ -144,6 +144,18 @@ module.exports = {
 
     return response;
   },
+  
+  async discussion_boards(ctx) {
+    const { id } = ctx.params;
+    const classroom = await strapi.services.classroom.findOne({id: id});
+    // check if the classroom exists
+    let response;
+    if (classroom) {
+      response = classroom.discussion_boards;
+    }
+
+    return response;
+  },
 
   /**
    * Join a classroom and create a new student session

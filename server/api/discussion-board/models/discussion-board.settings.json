@@ -2,7 +2,8 @@
   "kind": "collectionType",
   "collectionName": "discussion_boards",
   "info": {
-    "name": "Discussion Board"
+    "name": "Discussion Board",
+    "description": ""
   },
   "options": {
     "increments": true,
@@ -14,9 +15,13 @@
       "type": "string",
       "required": true
     },
+    "description": {
+      "type": "text",
+      "required": true
+    },
     "classroom": {
-      "via": "discussion_boards",
-      "model": "classroom"
+      "model": "classroom",
+      "via": "discussion_boards"
     },
     "discussion_posts": {
       "via": "discussion_board",

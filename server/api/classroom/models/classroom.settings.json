@@ -52,7 +52,6 @@
       "model": "syllabus"
     },
     "discussion_boards": {
-      "private": true,
       "via": "classroom",
       "collection": "discussion-board"
     }

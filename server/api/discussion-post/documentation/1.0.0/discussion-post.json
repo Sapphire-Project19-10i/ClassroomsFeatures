@@ -529,26 +529,32 @@
     "schemas": {
       "Discussion-post": {
         "required": [
-          "id",
-          "text"
+          "id"
         ],
         "properties": {
           "id": {
             "type": "string"
           },
-          "text": {
+          "name": {
+            "type": "string"
+          },
+          "content": {
             "type": "string"
           },
           "discussion_board": {
             "required": [
               "id",
-              "title"
+              "title",
+              "description"
             ],
             "properties": {
               "id": {
                 "type": "string"
               },
               "title": {
+                "type": "string"
+              },
+              "description": {
                 "type": "string"
               },
               "classroom": {
@@ -571,11 +577,11 @@
         }
       },
       "NewDiscussion-post": {
-        "required": [
-          "text"
-        ],
         "properties": {
-          "text": {
+          "name": {
+            "type": "string"
+          },
+          "content": {
             "type": "string"
           },
           "discussion_board": {
