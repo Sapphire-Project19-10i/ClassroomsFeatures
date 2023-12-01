@@ -618,6 +618,9 @@
                     "type": "string"
                   }
                 },
+                "syllabus": {
+                  "type": "string"
+                },
                 "created_by": {
                   "type": "string"
                 },

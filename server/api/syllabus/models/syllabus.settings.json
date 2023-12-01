@@ -1,0 +1,22 @@
+{
+  "kind": "collectionType",
+  "collectionName": "syllabi",
+  "info": {
+    "name": "Syllabus"
+  },
+  "options": {
+    "increments": true,
+    "timestamps": true,
+    "draftAndPublish": true
+  },
+  "attributes": {
+    "content": {
+      "type": "richtext",
+      "required": true
+    },
+    "classroom": {
+      "via": "syllabus",
+      "model": "classroom"
+    }
+  }
+}
