@@ -3,6 +3,7 @@ import TextEditor from '../TextEditor';
 import { message } from 'antd';
 import { createSyllabus, updateSyllabus, getSyllabus, getSyllabi } from '../../Utils/requests';
 
+
 export default function SyllabusTab({searchParams, setSearchParams, classroomId}){
   let editorRef;
   
@@ -51,6 +52,7 @@ export default function SyllabusTab({searchParams, setSearchParams, classroomId}
       <div id='page-header'>
         <div id="display-code-modal">
           <button id="display-code-btn" onClick={handleSave}>Save (WYSIWYG)</button>
+
         </div>
         <h1>Syllabus</h1>
       </div>
