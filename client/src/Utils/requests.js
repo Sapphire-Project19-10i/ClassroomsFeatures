@@ -672,3 +672,49 @@ export const getClassroomWorkspace = async (id) =>
     auth: true,
     error: 'Unable to retrive classroom workspaces',
   });
+
+export const createSyllabus = async (
+  content,
+  classroom,
+) =>
+  makeRequest({
+    method: POST,
+    path: `${server}/syllabi`,
+    auth: true,
+    data: {
+      content,
+      classroom,
+    },
+    error: 'Unable to create syllabus',
+  });
+export const getSyllabus = async (id) =>
+  makeRequest({
+    method: GET,
+    path: `${server}/classroom/syllabi/${id}`,
+    auth: true,
+    error: 'Unable to retrive syllabus.',
+  });
+export const getSyllabi = async () =>
+  makeRequest({
+    method: GET,
+    path: `${server}/syllabi`,
+    auth: true,
+    error: 'Unable to retrive syllabus',
+  });
+export const updateSyllabus = async (id, content) =>
+  makeRequest({
+    method: PUT,
+    path: `${server}/syllabi/${id}`,
+    auth: true,
+    data: {
+      content,
+    },
+    error: 'Unable to update syllabus',
+  });
+export const deleteSyllabus = async (id) =>
+  makeRequest({
+    method: DELETE,
+    path: `${server}/syllabi/${id}`,
+    auth: true,
+    error: 'Unable to delete syllabus',
+  });

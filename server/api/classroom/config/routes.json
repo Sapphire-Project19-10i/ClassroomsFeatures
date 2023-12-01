@@ -40,6 +40,14 @@
         "policies": ["global::isClassroomManager", "global::hasClassroom"]
       }
     },
+	    {
+      "method": "GET",
+      "path": "/classroom/syllabi/:id",
+      "handler": "classroom.syllabi",
+      "config": {
+        "policies": ["global::isClassroomManager", "global::hasClassroom"]
+      }
+    },
     {
       "method": "GET",
       "path": "/classrooms/join/:code",
