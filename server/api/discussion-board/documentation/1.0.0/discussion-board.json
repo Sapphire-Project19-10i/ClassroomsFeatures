@@ -1,6 +1,6 @@
 {
   "paths": {
-    "/mentors": {
+    "/discussion-boards": {
       "get": {
         "deprecated": false,
         "description": "",
@@ -10,9 +10,10 @@
             "content": {
               "application/json": {
                 "schema": {
-                  "type": "array",
-                  "items": {
-                    "$ref": "#/components/schemas/Mentor"
+                  "properties": {
+                    "foo": {
+                      "type": "string"
+                    }
                   }
                 }
               }
@@ -51,7 +52,7 @@
         },
         "summary": "",
         "tags": [
-          "Mentor"
+          "Discussion-board"
         ],
         "parameters": [
           {
@@ -201,72 +202,9 @@
             "content": {
               "application/json": {
                 "schema": {
-                  "$ref": "#/components/schemas/Mentor"
-                }
-              }
-            }
-          },
-          "403": {
-            "description": "Forbidden",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/Error"
-                }
-              }
-            }
-          },
-          "404": {
-            "description": "Not found",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/Error"
-                }
-              }
-            }
-          },
-          "default": {
-            "description": "unexpected error",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/Error"
-                }
-              }
-            }
-          }
-        },
-        "summary": "",
-        "tags": [
-          "Mentor"
-        ],
-        "requestBody": {
-          "description": "",
-          "required": true,
-          "content": {
-            "application/json": {
-              "schema": {
-                "$ref": "#/components/schemas/NewMentor"
-              }
-            }
-          }
-        }
-      }
-    },
-    "/mentors/count": {
-      "get": {
-        "deprecated": false,
-        "description": "",
-        "responses": {
-          "200": {
-            "description": "response",
-            "content": {
-              "application/json": {
-                "schema": {
                   "properties": {
-                    "count": {
-                      "type": "integer"
+                    "foo": {
+                      "type": "string"
                     }
                   }
                 }
@@ -306,12 +244,22 @@
         },
         "summary": "",
         "tags": [
-          "Mentor"
+          "Discussion-board"
         ],
-        "parameters": []
+        "requestBody": {
+          "description": "",
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/NewDiscussion-board"
+              }
+            }
+          }
+        }
       }
     },
-    "/mentors/{id}": {
+    "/discussion-boards/count": {
       "get": {
         "deprecated": false,
         "description": "",
@@ -321,7 +269,11 @@
             "content": {
               "application/json": {
                 "schema": {
-                  "$ref": "#/components/schemas/Mentor"
+                  "properties": {
+                    "foo": {
+                      "type": "string"
+                    }
+                  }
                 }
               }
             }
@@ -359,7 +311,64 @@
         },
         "summary": "",
         "tags": [
-          "Mentor"
+          "Discussion-board"
+        ],
+        "parameters": []
+      }
+    },
+    "/discussion-boards/{id}": {
+      "get": {
+        "deprecated": false,
+        "description": "",
+        "responses": {
+          "200": {
+            "description": "response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "properties": {
+                    "foo": {
+                      "type": "string"
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "403": {
+            "description": "Forbidden",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "Not found",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            }
+          },
+          "default": {
+            "description": "unexpected error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            }
+          }
+        },
+        "summary": "",
+        "tags": [
+          "Discussion-board"
         ],
         "parameters": [
           {
@@ -383,7 +392,11 @@
             "content": {
               "application/json": {
                 "schema": {
-                  "$ref": "#/components/schemas/Mentor"
+                  "properties": {
+                    "foo": {
+                      "type": "string"
+                    }
+                  }
                 }
               }
             }
@@ -421,7 +434,7 @@
         },
         "summary": "",
         "tags": [
-          "Mentor"
+          "Discussion-board"
         ],
         "requestBody": {
           "description": "",
@@ -429,7 +442,7 @@
           "content": {
             "application/json": {
               "schema": {
-                "$ref": "#/components/schemas/NewMentor"
+                "$ref": "#/components/schemas/NewDiscussion-board"
               }
             }
           }
@@ -495,7 +508,7 @@
         },
         "summary": "",
         "tags": [
-          "Mentor"
+          "Discussion-board"
         ],
         "parameters": [
           {
@@ -514,23 +527,22 @@
   },
   "components": {
     "schemas": {
-      "Mentor": {
+      "Discussion-board": {
         "required": [
-          "id"
+          "id",
+          "title"
         ],
         "properties": {
           "id": {
             "type": "string"
           },
-          "first_name": {
+          "title": {
             "type": "string"
           },
-          "last_name": {
-            "type": "string"
-          },
-          "school": {
+          "classroom": {
             "required": [
-              "id"
+              "id",
+              "code"
             ],
             "properties": {
               "id": {
@@ -539,13 +551,10 @@
               "name": {
                 "type": "string"
               },
-              "county": {
+              "school": {
                 "type": "string"
               },
-              "state": {
-                "type": "string"
-              },
-              "classrooms": {
+              "sessions": {
                 "type": "array",
                 "items": {
                   "type": "string"
@@ -557,6 +566,39 @@
                   "type": "string"
                 }
               },
+              "students": {
+                "type": "array",
+                "items": {
+                  "type": "string"
+                }
+              },
+              "code": {
+                "type": "string"
+              },
+              "grade": {
+                "type": "string"
+              },
+              "selections": {
+                "type": "array",
+                "items": {
+                  "type": "string"
+                }
+              },
+              "authorized_workspaces": {
+                "type": "array",
+                "items": {
+                  "type": "string"
+                }
+              },
+              "syllabus": {
+                "type": "string"
+              },
+              "discussion_boards": {
+                "type": "array",
+                "items": {
+                  "type": "string"
+                }
+              },
               "created_by": {
                 "type": "string"
               },
@@ -565,67 +607,22 @@
               }
             }
           },
-          "classrooms": {
+          "discussion_posts": {
             "type": "array",
             "items": {
               "required": [
                 "id",
-                "code"
+                "text"
               ],
               "properties": {
                 "id": {
                   "type": "string"
                 },
-                "name": {
+                "text": {
                   "type": "string"
                 },
-                "school": {
+                "discussion_board": {
                   "type": "string"
-                },
-                "sessions": {
-                  "type": "array",
-                  "items": {
-                    "type": "string"
-                  }
-                },
-                "mentors": {
-                  "type": "array",
-                  "items": {
-                    "type": "string"
-                  }
-                },
-                "students": {
-                  "type": "array",
-                  "items": {
-                    "type": "string"
-                  }
-                },
-                "code": {
-                  "type": "string"
-                },
-                "grade": {
-                  "type": "string"
-                },
-                "selections": {
-                  "type": "array",
-                  "items": {
-                    "type": "string"
-                  }
-                },
-                "authorized_workspaces": {
-                  "type": "array",
-                  "items": {
-                    "type": "string"
-                  }
-                },
-                "syllabus": {
-                  "type": "string"
-                },
-                "discussion_boards": {
-                  "type": "array",
-                  "items": {
-                    "type": "string"
-                  }
                 },
                 "created_by": {
                   "type": "string"
@@ -635,73 +632,25 @@
                 }
               }
             }
-          },
-          "user": {
-            "required": [
-              "id",
-              "username",
-              "email"
-            ],
-            "properties": {
-              "id": {
-                "type": "string"
-              },
-              "username": {
-                "type": "string"
-              },
-              "email": {
-                "type": "string"
-              },
-              "provider": {
-                "type": "string"
-              },
-              "password": {
-                "type": "string"
-              },
-              "resetPasswordToken": {
-                "type": "string"
-              },
-              "confirmationToken": {
-                "type": "string"
-              },
-              "confirmed": {
-                "type": "boolean"
-              },
-              "blocked": {
-                "type": "boolean"
-              },
-              "role": {
-                "type": "string"
-              },
-              "created_by": {
-                "type": "string"
-              },
-              "updated_by": {
-                "type": "string"
-              }
-            }
           }
         }
       },
-      "NewMentor": {
+      "NewDiscussion-board": {
+        "required": [
+          "title"
+        ],
         "properties": {
-          "first_name": {
+          "title": {
             "type": "string"
           },
-          "last_name": {
+          "classroom": {
             "type": "string"
           },
-          "school": {
-            "type": "string"
-          },
-          "classrooms": {
+          "discussion_posts": {
             "type": "array",
             "items": {
               "type": "string"
             }
-          },
-          "user": {
-            "type": "string"
           },
           "created_by": {
             "type": "string"
@@ -713,9 +662,5 @@
       }
     }
   },
-  "tags": [
-    {
-      "name": "Mentor"
-    }
-  ]
+  "tags": []
 }

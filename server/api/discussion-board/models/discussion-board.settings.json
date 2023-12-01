@@ -1,9 +1,8 @@
 {
   "kind": "collectionType",
-  "collectionName": "syllabi",
+  "collectionName": "discussion_boards",
   "info": {
-    "name": "Syllabus",
-    "description": ""
+    "name": "Discussion Board"
   },
   "options": {
     "increments": true,
@@ -11,13 +10,17 @@
     "draftAndPublish": false
   },
   "attributes": {
-    "content": {
-      "type": "text",
+    "title": {
+      "type": "string",
       "required": true
     },
     "classroom": {
-      "via": "syllabus",
+      "via": "discussion_boards",
       "model": "classroom"
+    },
+    "discussion_posts": {
+      "via": "discussion_board",
+      "collection": "discussion-post"
     }
   }
 }
