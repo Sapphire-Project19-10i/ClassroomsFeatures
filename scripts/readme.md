@@ -24,6 +24,6 @@ If this does not work, you can alternatively try using the command ```pg_dumpall
 
 # Useful Script (by Patrick)
 ## Export
-If you are on Windows, you can just double click **export_db.cmd** to export **development_db.dump**, and then push it to your repo.
+If you are on Windows, you can just double click **export_db.cmd** to export **development_db.dump**, and then push it to your repo. This will replace the old **development_db.dump** in **scripts** folder with the new one.
 ## Import
-After pulling **development_db.dump** to your local repo, delete the server **casmm-db-dev** (Don't need to delete all four servers). Do ```docker compose up``` again. All data in **development_db.dump** will be loaded in seconds.
+After pulling **development_db.dump** to your local repo, delete the server **casmm-db-dev** (Don't need to delete all four servers). Do ```docker compose up``` in the top folder again. All data in **development_db.dump** will be loaded in seconds.
