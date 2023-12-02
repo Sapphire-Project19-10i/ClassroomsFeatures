@@ -23,4 +23,7 @@ Replacing the old dump with this new one will allow you to load your strapi into
 If this does not work, you can alternatively try using the command ```pg_dumpall -U postgres -f dumpall.dump```. This will dump all of the databases and you can then manually remove the ones that you didn't mean to grab.
 
 # Useful Script (by Patrick)
-If you are on Windows, you can just double click on **export_db.cmd** to export **development_db.dump**, and then push it to your repo. After others pull this file to their local repo, delete the server **casmm-db-dev** (don't need to delete all four servers). Do ```docker compose up``` again. All data in the exported database will be loaded in seconds.
+## Export
+If you are on Windows, you can just double click **export_db.cmd** to export **development_db.dump**, and then push it to your repo.
+## Import
+After pulling **development_db.dump** to your local repo, delete the server **casmm-db-dev** (Don't need to delete all four servers). Do ```docker compose up``` again. All data in **development_db.dump** will be loaded in seconds.
