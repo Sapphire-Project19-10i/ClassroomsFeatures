@@ -1,0 +1,1 @@
+docker exec -t casmm-db-dev pg_dump -U postgres strapi > development_db.dump
