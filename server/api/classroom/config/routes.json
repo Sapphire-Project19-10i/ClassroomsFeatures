@@ -40,6 +40,22 @@
         "policies": ["global::isClassroomManager", "global::hasClassroom"]
       }
     },
+	{
+      "method": "GET",
+      "path": "/classroom/syllabi/:id",
+      "handler": "classroom.syllabi",
+      "config": {
+        "policies": ["global::isClassroomManager", "global::hasClassroom"]
+      }
+    },
+	{
+      "method": "GET",
+      "path": "/classroom/discussion-boards/:id",
+      "handler": "classroom.discussion_boards",
+      "config": {
+        "policies": ["global::isClassroomManager", "global::hasClassroom"]
+      }
+    },
     {
       "method": "GET",
       "path": "/classrooms/join/:code",

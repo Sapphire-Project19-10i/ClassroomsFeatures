@@ -18,6 +18,7 @@ yarn-error.log*
 !development_db.dump
 !test_db.dump
 .strapi-updater.json
+yarn.lock
 
 # Packages
 *.zip
