@@ -1,0 +1,25 @@
+#display-syllabus-wrapper {
+  background-color: #fff;
+  font-size: 18px;
+  font-weight: bold;
+  border-radius: 10px;
+  padding: 20px 5vw;
+  text-align: left;
+
+}
+
+#display-syllabus-wrapper ol,ul{
+  padding: 0;
+}
+
+#display-syllabus-wrapper ol li{
+  list-style-type: decimal;
+  display: list-item;
+  list-style-position: inside;
+}
+
+#display-syllabus-wrapper ul li{
+  list-style-type: disc;
+  display: list-item;
+  list-style-position: inside;
+}
