@@ -1,0 +1,52 @@
+{
+  "routes": [
+    {
+      "method": "GET",
+      "path": "/syllabi",
+      "handler": "syllabus.find",
+      "config": {
+        "policies": []
+      }
+    },
+    {
+      "method": "GET",
+      "path": "/syllabi/count",
+      "handler": "syllabus.count",
+      "config": {
+        "policies": []
+      }
+    },
+    {
+      "method": "GET",
+      "path": "/syllabi/:id",
+      "handler": "syllabus.findOne",
+      "config": {
+        "policies": []
+      }
+    },
+    {
+      "method": "POST",
+      "path": "/syllabi",
+      "handler": "syllabus.create",
+      "config": {
+        "policies": []
+      }
+    },
+    {
+      "method": "PUT",
+      "path": "/syllabi/:id",
+      "handler": "syllabus.update",
+      "config": {
+        "policies": []
+      }
+    },
+    {
+      "method": "DELETE",
+      "path": "/syllabi/:id",
+      "handler": "syllabus.delete",
+      "config": {
+        "policies": []
+      }
+    }
+  ]
+}

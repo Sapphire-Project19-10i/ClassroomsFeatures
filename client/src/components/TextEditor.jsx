@@ -2,11 +2,22 @@ import React from 'react';
 import {Editor, EditorState, getDefaultKeyBinding, RichUtils} from 'draft-js'
 import './TextEditor.css';
 import '../../node_modules/draft-js/dist/Draft.css'
+import {stateToHTML} from 'draft-js-export-html';
+import {stateFromHTML} from 'draft-js-import-html';
 
-class TextEditor extends React.Component {
+class TextEditor extends React.Component
+{
   constructor(props) {
     super(props);
-    this.state = {editorState: EditorState.createEmpty()};
+
+    if (props.html != null && props.html != "")
+    {
+      this.state = {editorState: EditorState.createWithContent(stateFromHTML(props.html)),};
+    }
+    else
+    {
+      this.state = {editorState: EditorState.createEmpty()}
+    }
 
     this.focus = () => this.refs.editor.focus();
     this.onChange = (editorState) => this.setState({editorState});
@@ -15,7 +26,19 @@ class TextEditor extends React.Component {
     this.mapKeyToEditorCommand = this._mapKeyToEditorCommand.bind(this);
     this.toggleBlockType = this._toggleBlockType.bind(this);
     this.toggleInlineStyle = this._toggleInlineStyle.bind(this);
+    this.placeholder = props.placeholder;
   }
+
+  setHtml = (html) => {
+    const contentState = stateFromHTML(html);
+    this.setState({ editorState: EditorState.createWithContent(contentState) });
+  };
+
+  getHtml = () => {
+    const contentState = this.state.editorState.getCurrentContent();
+    const htmlContent = stateToHTML(contentState);
+    return htmlContent;
+  };
 
   _handleKeyCommand(command, editorState) {
     const newState = RichUtils.handleKeyCommand(editorState, command);
@@ -90,7 +113,7 @@ class TextEditor extends React.Component {
             handleKeyCommand={this.handleKeyCommand}
             keyBindingFn={this.mapKeyToEditorCommand}
             onChange={this.onChange}
-            placeholder="Type..."
+            placeholder={this.placeholder}
             ref="editor"
             spellCheck={true}
           />

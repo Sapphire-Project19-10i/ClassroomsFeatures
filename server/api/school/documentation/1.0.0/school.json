@@ -584,6 +584,15 @@
                     "type": "string"
                   }
                 },
+                "syllabus": {
+                  "type": "string"
+                },
+                "discussion_boards": {
+                  "type": "array",
+                  "items": {
+                    "type": "string"
+                  }
+                },
                 "created_by": {
                   "type": "string"
                 },

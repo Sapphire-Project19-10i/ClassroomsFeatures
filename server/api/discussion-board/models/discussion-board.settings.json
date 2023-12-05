@@ -1,0 +1,31 @@
+{
+  "kind": "collectionType",
+  "collectionName": "discussion_boards",
+  "info": {
+    "name": "Discussion Board",
+    "description": ""
+  },
+  "options": {
+    "increments": true,
+    "timestamps": true,
+    "draftAndPublish": false
+  },
+  "attributes": {
+    "title": {
+      "type": "string",
+      "required": true
+    },
+    "description": {
+      "type": "text",
+      "required": true
+    },
+    "classroom": {
+      "model": "classroom",
+      "via": "discussion_boards"
+    },
+    "discussion_posts": {
+      "via": "discussion_board",
+      "collection": "discussion-post"
+    }
+  }
+}

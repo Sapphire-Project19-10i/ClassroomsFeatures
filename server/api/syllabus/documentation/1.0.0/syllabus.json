@@ -1,6 +1,6 @@
 {
   "paths": {
-    "/mentors": {
+    "/syllabi": {
       "get": {
         "deprecated": false,
         "description": "",
@@ -12,7 +12,7 @@
                 "schema": {
                   "type": "array",
                   "items": {
-                    "$ref": "#/components/schemas/Mentor"
+                    "$ref": "#/components/schemas/Syllabus"
                   }
                 }
               }
@@ -51,7 +51,7 @@
         },
         "summary": "",
         "tags": [
-          "Mentor"
+          "Syllabus"
         ],
         "parameters": [
           {
@@ -201,7 +201,7 @@
             "content": {
               "application/json": {
                 "schema": {
-                  "$ref": "#/components/schemas/Mentor"
+                  "$ref": "#/components/schemas/Syllabus"
                 }
               }
             }
@@ -239,7 +239,7 @@
         },
         "summary": "",
         "tags": [
-          "Mentor"
+          "Syllabus"
         ],
         "requestBody": {
           "description": "",
@@ -247,14 +247,14 @@
           "content": {
             "application/json": {
               "schema": {
-                "$ref": "#/components/schemas/NewMentor"
+                "$ref": "#/components/schemas/NewSyllabus"
               }
             }
           }
         }
       }
     },
-    "/mentors/count": {
+    "/syllabi/count": {
       "get": {
         "deprecated": false,
         "description": "",
@@ -306,12 +306,12 @@
         },
         "summary": "",
         "tags": [
-          "Mentor"
+          "Syllabus"
         ],
         "parameters": []
       }
     },
-    "/mentors/{id}": {
+    "/syllabi/{id}": {
       "get": {
         "deprecated": false,
         "description": "",
@@ -321,7 +321,7 @@
             "content": {
               "application/json": {
                 "schema": {
-                  "$ref": "#/components/schemas/Mentor"
+                  "$ref": "#/components/schemas/Syllabus"
                 }
               }
             }
@@ -359,7 +359,7 @@
         },
         "summary": "",
         "tags": [
-          "Mentor"
+          "Syllabus"
         ],
         "parameters": [
           {
@@ -383,7 +383,7 @@
             "content": {
               "application/json": {
                 "schema": {
-                  "$ref": "#/components/schemas/Mentor"
+                  "$ref": "#/components/schemas/Syllabus"
                 }
               }
             }
@@ -421,7 +421,7 @@
         },
         "summary": "",
         "tags": [
-          "Mentor"
+          "Syllabus"
         ],
         "requestBody": {
           "description": "",
@@ -429,7 +429,7 @@
           "content": {
             "application/json": {
               "schema": {
-                "$ref": "#/components/schemas/NewMentor"
+                "$ref": "#/components/schemas/NewSyllabus"
               }
             }
           }
@@ -495,7 +495,7 @@
         },
         "summary": "",
         "tags": [
-          "Mentor"
+          "Syllabus"
         ],
         "parameters": [
           {
@@ -514,23 +514,22 @@
   },
   "components": {
     "schemas": {
-      "Mentor": {
+      "Syllabus": {
         "required": [
-          "id"
+          "id",
+          "content"
         ],
         "properties": {
           "id": {
             "type": "string"
           },
-          "first_name": {
+          "content": {
             "type": "string"
           },
-          "last_name": {
-            "type": "string"
-          },
-          "school": {
+          "classroom": {
             "required": [
-              "id"
+              "id",
+              "code"
             ],
             "properties": {
               "id": {
@@ -539,13 +538,10 @@
               "name": {
                 "type": "string"
               },
-              "county": {
+              "school": {
                 "type": "string"
               },
-              "state": {
-                "type": "string"
-              },
-              "classrooms": {
+              "sessions": {
                 "type": "array",
                 "items": {
                   "type": "string"
@@ -557,121 +553,38 @@
                   "type": "string"
                 }
               },
-              "created_by": {
-                "type": "string"
-              },
-              "updated_by": {
-                "type": "string"
-              }
-            }
-          },
-          "classrooms": {
-            "type": "array",
-            "items": {
-              "required": [
-                "id",
-                "code"
-              ],
-              "properties": {
-                "id": {
-                  "type": "string"
-                },
-                "name": {
-                  "type": "string"
-                },
-                "school": {
-                  "type": "string"
-                },
-                "sessions": {
-                  "type": "array",
-                  "items": {
-                    "type": "string"
-                  }
-                },
-                "mentors": {
-                  "type": "array",
-                  "items": {
-                    "type": "string"
-                  }
-                },
-                "students": {
-                  "type": "array",
-                  "items": {
-                    "type": "string"
-                  }
-                },
-                "code": {
-                  "type": "string"
-                },
-                "grade": {
-                  "type": "string"
-                },
-                "selections": {
-                  "type": "array",
-                  "items": {
-                    "type": "string"
-                  }
-                },
-                "authorized_workspaces": {
-                  "type": "array",
-                  "items": {
-                    "type": "string"
-                  }
-                },
-                "syllabus": {
-                  "type": "string"
-                },
-                "discussion_boards": {
-                  "type": "array",
-                  "items": {
-                    "type": "string"
-                  }
-                },
-                "created_by": {
-                  "type": "string"
-                },
-                "updated_by": {
+              "students": {
+                "type": "array",
+                "items": {
                   "type": "string"
                 }
-              }
-            }
-          },
-          "user": {
-            "required": [
-              "id",
-              "username",
-              "email"
-            ],
-            "properties": {
-              "id": {
+              },
+              "code": {
                 "type": "string"
               },
-              "username": {
+              "grade": {
                 "type": "string"
               },
-              "email": {
+              "selections": {
+                "type": "array",
+                "items": {
+                  "type": "string"
+                }
+              },
+              "authorized_workspaces": {
+                "type": "array",
+                "items": {
+                  "type": "string"
+                }
+              },
+              "syllabus": {
                 "type": "string"
               },
-              "provider": {
-                "type": "string"
-              },
-              "password": {
-                "type": "string"
-              },
-              "resetPasswordToken": {
-                "type": "string"
-              },
-              "confirmationToken": {
-                "type": "string"
-              },
-              "confirmed": {
-                "type": "boolean"
-              },
-              "blocked": {
-                "type": "boolean"
-              },
-              "role": {
-                "type": "string"
+              "discussion_boards": {
+                "type": "array",
+                "items": {
+                  "type": "string"
+                }
               },
               "created_by": {
                 "type": "string"
@@ -683,24 +596,15 @@
           }
         }
       },
-      "NewMentor": {
+      "NewSyllabus": {
+        "required": [
+          "content"
+        ],
         "properties": {
-          "first_name": {
+          "content": {
             "type": "string"
           },
-          "last_name": {
-            "type": "string"
-          },
-          "school": {
-            "type": "string"
-          },
-          "classrooms": {
-            "type": "array",
-            "items": {
-              "type": "string"
-            }
-          },
-          "user": {
+          "classroom": {
             "type": "string"
           },
           "created_by": {
@@ -715,7 +619,7 @@
   },
   "tags": [
     {
-      "name": "Mentor"
+      "name": "Syllabus"
     }
   ]
 }
