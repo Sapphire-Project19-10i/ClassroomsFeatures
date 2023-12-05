@@ -42,9 +42,6 @@
     },
     "closeDate": {
       "type": "date"
-    },
-    "description": {
-      "type": "richtext"
     }
   }
 }

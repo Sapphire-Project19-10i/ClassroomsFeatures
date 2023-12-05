@@ -136,17 +136,6 @@ export default function LessonEditor({
               placeholder="Enter lesson standards"
             />
           </Form.Item>
-          <Form.Item label="Link to Additional Resources (Optional)">
-            <Input
-              onChange={e => {
-                setLink(e.target.value)
-                setLinkError(false)
-              }}
-              style={linkError ? { backgroundColor: "#FFCCCC" } : {}}
-              value={link}
-              placeholder="Enter a link"
-            />
-          </Form.Item>
           <Form.Item id="form-label" label="Release Date">
             <DatePicker
               value={releaseDate}
@@ -159,6 +148,17 @@ export default function LessonEditor({
               value={closeDate}
               onChange={(date) => setCloseDate(date)}
               style={{ width: "100%" }}
+            />
+          </Form.Item>
+          <Form.Item label="Link to Additional Resources (Optional)">
+            <Input
+              onChange={e => {
+                setLink(e.target.value)
+                setLinkError(false)
+              }}
+              style={linkError ? { backgroundColor: "#FFCCCC" } : {}}
+              value={link}
+              placeholder="Enter a link"
             />
           </Form.Item>
           <Form.Item

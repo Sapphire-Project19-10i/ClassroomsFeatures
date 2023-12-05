@@ -655,9 +655,6 @@
           "closeDate": {
             "type": "string",
             "format": "date"
-          },
-          "description": {
-            "type": "string"
           }
         }
       },
@@ -698,9 +695,6 @@
           "closeDate": {
             "type": "string",
             "format": "date"
-          },
-          "description": {
-            "type": "string"
           },
           "created_by": {
             "type": "string"
