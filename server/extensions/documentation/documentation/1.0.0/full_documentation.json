@@ -14,7 +14,7 @@
       "name": "Apache 2.0",
       "url": "https://www.apache.org/licenses/LICENSE-2.0.html"
     },
-    "x-generation-date": "12/01/2023 10:51:07 PM"
+    "x-generation-date": "12/05/2023 9:19:00 PM"
   },
   "x-strapi-config": {
     "path": "/documentation",
@@ -13542,6 +13542,12 @@
               "link": {
                 "type": "string"
               },
+              "releaseDate": {
+                "type": "string"
+              },
+              "closeDate": {
+                "type": "string"
+              },
               "created_by": {
                 "type": "string"
               },
@@ -14937,6 +14943,14 @@
           },
           "link": {
             "type": "string"
+          },
+          "releaseDate": {
+            "type": "string",
+            "format": "date"
+          },
+          "closeDate": {
+            "type": "string",
+            "format": "date"
           }
         }
       },
@@ -14969,6 +14983,14 @@
           },
           "link": {
             "type": "string"
+          },
+          "releaseDate": {
+            "type": "string",
+            "format": "date"
+          },
+          "closeDate": {
+            "type": "string",
+            "format": "date"
           },
           "created_by": {
             "type": "string"
@@ -15627,6 +15649,12 @@
               "link": {
                 "type": "string"
               },
+              "releaseDate": {
+                "type": "string"
+              },
+              "closeDate": {
+                "type": "string"
+              },
               "created_by": {
                 "type": "string"
               },
@@ -15979,6 +16007,12 @@
                 "type": "string"
               },
               "link": {
+                "type": "string"
+              },
+              "releaseDate": {
+                "type": "string"
+              },
+              "closeDate": {
                 "type": "string"
               },
               "created_by": {
@@ -16600,6 +16634,12 @@
                   "type": "string"
                 },
                 "link": {
+                  "type": "string"
+                },
+                "releaseDate": {
+                  "type": "string"
+                },
+                "closeDate": {
                   "type": "string"
                 },
                 "created_by": {

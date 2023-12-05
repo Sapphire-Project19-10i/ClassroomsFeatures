@@ -36,6 +36,12 @@
     },
     "link": {
       "type": "string"
+    },
+    "releaseDate": {
+      "type": "date"
+    },
+    "closeDate": {
+      "type": "date"
     }
   }
 }
