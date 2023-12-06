@@ -376,18 +376,22 @@ export const createLessonModule = async (
   number,
   unit,
   standards,
-  link
+  link,
+  releaseDate,
+  closeDate
 ) =>
   makeRequest({
     method: POST,
     path: `${server}/lesson-modules`,
     data: {
-      expectations: description,
+      description: description,
       name,
       number,
       unit,
       standards,
       link,
+      releaseDate,
+      closeDate,
     },
     auth: true,
     error: 'Login failed.',
@@ -451,7 +455,9 @@ export const updateLessonModule = async (
   name,
   expectations,
   standards,
-  link
+  link,
+  releaseDate,
+  closeDate
 ) =>
   makeRequest({
     method: PUT,
@@ -461,6 +467,8 @@ export const updateLessonModule = async (
       standards,
       expectations,
       link,
+      releaseDate,
+      closeDate,
     },
     auth: true,
     error: 'Failed to update unit',

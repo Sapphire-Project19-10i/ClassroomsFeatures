@@ -647,6 +647,14 @@
           },
           "link": {
             "type": "string"
+          },
+          "releaseDate": {
+            "type": "string",
+            "format": "date"
+          },
+          "closeDate": {
+            "type": "string",
+            "format": "date"
           }
         }
       },
@@ -679,6 +687,14 @@
           },
           "link": {
             "type": "string"
+          },
+          "releaseDate": {
+            "type": "string",
+            "format": "date"
+          },
+          "closeDate": {
+            "type": "string",
+            "format": "date"
           },
           "created_by": {
             "type": "string"

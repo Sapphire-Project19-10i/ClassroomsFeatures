@@ -24,6 +24,7 @@
       "via": "discussion_boards"
     },
     "discussion_posts": {
+      "private": true,
       "via": "discussion_board",
       "collection": "discussion-post"
     }
