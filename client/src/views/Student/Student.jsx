@@ -1,4 +1,5 @@
 import { message } from 'antd';
+import ClickButton from './Syllabus';
 import React, { useEffect, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import NavBar from '../../components/NavBar/NavBar';
@@ -35,11 +36,18 @@ function Student() {
   return (
     <div className='container nav-padding'>
       <NavBar />
+
       <div id='activity-container'>
         <div id='header'>
-          <div>Select your Activity</div>
+          <div>Select your Activity!</div>
+        
         </div>
+        <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'flex-end' }}>
+        <ClickButton/>
+        </div>
+       
         <ul>
+       
           {learningStandard.activities ? (
             learningStandard.activities
               .sort((activity1, activity2) => activity1.number - activity2.number)
@@ -50,6 +58,7 @@ function Student() {
                   onClick={() => handleSelection(activity)}
                 >
                   <li>{`${learningStandard.name}: Activity ${activity.number}`}</li>
+                  
                 </div>
               ))
           ) : (
@@ -60,8 +69,10 @@ function Student() {
               </p>
             </div>
           )}
+          
         </ul>
       </div>
+      
     </div>
   );
 }
