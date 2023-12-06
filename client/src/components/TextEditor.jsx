@@ -5,22 +5,29 @@ import '../../node_modules/draft-js/dist/Draft.css'
 import {stateToHTML} from 'draft-js-export-html';
 import {stateFromHTML} from 'draft-js-import-html';
 
+import { convertToRaw } from 'draft-js';
+import draftToHtml from 'draftjs-to-html';
+
 class TextEditor extends React.Component
 {
   constructor(props) {
     super(props);
+    console.log('PROPS');
+    console.log(props);
 
-    if (props.html != null && props.html != "")
-    {
-      this.state = {editorState: EditorState.createWithContent(stateFromHTML(props.html)),};
-    }
-    else
-    {
+    if (props.value != null && props.value != "") {
+      this.state = {editorState: EditorState.createWithContent(stateFromHTML(props.value)),};
+    } else {
       this.state = {editorState: EditorState.createEmpty()}
     }
 
     this.focus = () => this.refs.editor.focus();
-    this.onChange = (editorState) => this.setState({editorState});
+    this.onChange = (editorState) => {
+      this.setState({ editorState });
+      const htmlContent = this.getHtml();
+      this.props.onChange && this.props.onChange(htmlContent);
+      // this.props.onChange && this.props.onChange(editorState);
+    };
 
     this.handleKeyCommand = this._handleKeyCommand.bind(this);
     this.mapKeyToEditorCommand = this._mapKeyToEditorCommand.bind(this);
@@ -29,8 +36,8 @@ class TextEditor extends React.Component
     this.placeholder = props.placeholder;
   }
 
-  setHtml = (html) => {
-    const contentState = stateFromHTML(html);
+  setHtml = (value) => {
+    const contentState = stateFromHTML(value);
     this.setState({ editorState: EditorState.createWithContent(contentState) });
   };
 

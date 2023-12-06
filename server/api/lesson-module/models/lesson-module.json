@@ -19,9 +19,6 @@
       "type": "string",
       "required": true
     },
-    "expectations": {
-      "type": "text"
-    },
     "activities": {
       "via": "lesson_module",
       "collection": "activity"
@@ -42,6 +39,9 @@
     },
     "closeDate": {
       "type": "date"
+    },
+    "expectations": {
+      "type": "text"
     }
   }
 }

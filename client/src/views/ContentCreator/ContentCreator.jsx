@@ -39,6 +39,7 @@ export default function ContentCreator() {
         getGrades(),
       ]);
       setLessonModuleList(lsResponse.data);
+      console.log(lsResponse.data);
 
       const grades = gradeResponse.data;
       grades.sort((a, b) => (a.id > b.id ? 1 : -1));
@@ -80,11 +81,14 @@ export default function ContentCreator() {
     },
     {
       title: 'Description',
-      dataIndex: 'expectations',
+      dataIndex: 'unit', // Update dataIndex to 'unit'
       key: 'character',
       editable: true,
       width: '22.5%',
       align: 'left',
+      render: (_, key) => (
+        <span>{key.unit.standards_description}</span>
+      ), // Update render function
     },
     {
       title: 'Delete',
