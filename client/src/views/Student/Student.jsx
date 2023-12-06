@@ -1,5 +1,5 @@
 import { message } from 'antd';
-import ClickButton from './Syllabus';
+import SyllabusButton from './SyllabusButton';
 import React, { useEffect, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import NavBar from '../../components/NavBar/NavBar';
@@ -8,6 +8,7 @@ import './Student.less';
 
 function Student() {
   const [learningStandard, setLessonModule] = useState({});
+  const [syllabusId, setSyllabusId] = useState(0);
   const navigate = useNavigate();
 
   useEffect(() => {
@@ -17,6 +18,7 @@ function Student() {
         if (res.data) {
           if (res.data.lesson_module) {
             setLessonModule(res.data.lesson_module);
+            setSyllabusId(res.data.classroom.syllabus);
           }
         } else {
           message.error(res.err);
@@ -36,18 +38,12 @@ function Student() {
   return (
     <div className='container nav-padding'>
       <NavBar />
-
       <div id='activity-container'>
         <div id='header'>
           <div>Select your Activity!</div>
-        
         </div>
-        <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'flex-end' }}>
-        <ClickButton/>
-        </div>
-       
+        <SyllabusButton id={syllabusId}/>
         <ul>
-       
           {learningStandard.activities ? (
             learningStandard.activities
               .sort((activity1, activity2) => activity1.number - activity2.number)
@@ -69,7 +65,6 @@ function Student() {
               </p>
             </div>
           )}
-          
         </ul>
       </div>
       

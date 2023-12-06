@@ -2,7 +2,7 @@ import React, { useState, useEffect } from 'react';
 import TextEditor from '../TextEditor';
 import { message } from 'antd';
 import { createSyllabus, updateSyllabus, getSyllabi } from '../../Utils/requests';
-import { sanitizeHTML } from '../Sanitizer';
+import sanitizeHTML from '../Sanitizer';
 import './SyllabusTab.css';
 
 
@@ -59,7 +59,7 @@ export default function SyllabusTab({searchParams, setSearchParams, classroomId}
     <div>
       <div id='page-header'>
         <div id="display-code-modal">
-          <button id="display-code-btn" onClick={handleModifier} style={{ fontSize: '1.5em' }}>
+          <button id="display-code-btn" onClick={handleModifier} style={{ fontSize: '1.3em' }}>
             {modifier ? 'Save' : 'Modify'}
           </button>
         </div>
