@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import TextEditor from '../TextEditor';
 import { message } from 'antd';
-import { createSyllabus, updateSyllabus, getSyllabus, getSyllabi } from '../../Utils/requests';
+import { createSyllabus, updateSyllabus, getSyllabi } from '../../Utils/requests';
 import { sanitizeHTML } from '../Sanitizer';
 import './SyllabusTab.css';
 
@@ -18,19 +18,16 @@ export default function SyllabusTab({searchParams, setSearchParams, classroomId}
     const fetchData = async () => {
       let wsResponse;
       if(classroomId){
-        wsResponse = await getSyllabus(classroomId);
-      }
-      else{
-        wsResponse = await getSyllabi();
-      }
-            
-      if(wsResponse.data){
-        setSyllbusContent(wsResponse.data.content);
-        setSyllbusId(wsResponse.data.id);
-      }
-      else{
-        wsResponse = await createSyllabus('', classroomId);
-        setSyllbusId(wsResponse.data.id);
+        wsResponse = await getSyllabi(classroomId);
+        
+        if(wsResponse.data){
+          setSyllbusContent(wsResponse.data.content);
+          setSyllbusId(wsResponse.data.id);
+        }
+        else{
+          wsResponse = await createSyllabus('', classroomId);
+          setSyllbusId(wsResponse.data.id);
+        }
       }
     };
     fetchData();
