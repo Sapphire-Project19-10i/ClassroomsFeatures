@@ -7,9 +7,8 @@ import Roster from './Roster/Roster';
 import Home from './Home/Home';
 import SavedWorkSpaceTab from '../../../components/Tabs/SavedWorkspaceTab';
 import SyllabusTab from '../../../components/Tabs/SyllabusTab';
-
 import LessonEditorTab from '../../../components/Tabs/LessonEditorTab';
-import DiscusBrdTab from '../../../components/Tabs/DiscusBrdTab';
+import DiscussionBoardTab from '../../../components/Tabs/DiscussionBoardTab';
 
 import { useSearchParams, useParams } from 'react-router-dom';
 
@@ -69,8 +68,8 @@ export default function Classroom({
             classroomId={id}
           />
           </TabPane>
-        <TabPane tab='Discussion Board' key='DiscusBrd'>
-          <DiscusBrdTab
+        <TabPane tab='Discussion Boards' key='discussionBoards'>
+          <DiscussionBoardTab
             searchParams={searchParams}
             setSearchParams={setSearchParams}
             classroomId={id}
