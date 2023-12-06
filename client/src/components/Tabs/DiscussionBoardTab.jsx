@@ -1,71 +1,22 @@
 import React, { useState, useEffect } from 'react';
 import TextEditor from '../TextEditor';
-import { Table, Popconfirm, message } from 'antd';
-//import { Modal, Button, Input, Form, Table, Popconfirm, message } from 'antd';
-import {createDiscussionBoard, getDiscussionBoard, getDiscussionBoards, getDiscussionPosts, getDiscussionPost } from '../../Utils/requests';
+import { Modal, Form, Input, Button, Table, Popconfirm, message } from 'antd';
+import { QuestionCircleOutlined } from '@ant-design/icons';
+import { createDiscussionBoard, getDiscussionBoard, getDiscussionBoards, deleteDiscussionBoard } from '../../Utils/requests';
+
 
 export default function DiscussionBoardTab({searchParams, setSearchParams, classroomId}){
   const [discussionBoardList, setDiscussionBoardList] = useState([]);
-
-  const [visible, setVisible] = useState(false);
+  const [tab, setTab] = useState(
+    searchParams.has('tab') ? searchParams.get('tab') : 'home'
+  );
+  const [page, setPage] = useState(
+    searchParams.has('page') ? parseInt(searchParams.get('page')) : 1
+  );
+  
   const [openState, setOpenState] = useState(false);
   const [title, setTitle] = useState("");
   const [description, setDescription] = useState("");
-  const [user, setUser] = useState("");
-  const [content, setContent] = useState("");
-  const [time, setTime] = useState("");
-
-
-  const handleCreateDiscussionBoard = async e => {
-    const res = await createDiscussionBoard(title, content, classroomId)
-    if (res.err) {
-      message.error("Fail to create new discussion")
-    } else {
-      message.success("Successfully created discussion")
-      setOpenState(false)
-    }
-  }
-  
-  
-  // const listStyle = {
-    // display: 'flex',
-    // flexDirection: 'column',
-    // alignItems: 'center',
-    // width: '1500px',
-    // height: '800px',
-    // border: '1px solid #ccc',
-    // padding: '20px',
-    // textAlign: 'center',
-    // marginTop: '100px',
-    // marginLeft: '100px',
-    // background: 'white'
-  // };
-  // const valueStyle = {
-    // backgroundColor: 'teal',
-    // color: 'white',
-    // padding: '8px',
-    // margin: '4px',
-    // borderRadius: '4px',
-    // borderBottom: '1px solid white',
-  // };
-  
-  // const postSubmit = async e => {
-    // const res = await createDiscussionPost(title, description)
-    // if (res.err) {
-      // message.error("Fail to create a new discussion post")
-    // } else {
-      // message.success("Successfully created discussion post")
-      // setOpenState(false)
-    // }
-  // }
-  // function value(openState, setOpenState){
-    // setOpenState(!openState);
-  // }
-
-
-  // const handleCancel = () => {
-    // setOpenState(false)
-  // }
 
 
   useEffect(() => {
@@ -78,11 +29,23 @@ export default function DiscussionBoardTab({searchParams, setSearchParams, class
       else{
         wsResponse = await getDiscussionBoards();
       }
-      console.log(wsResponse);
     };
     fetchData();
-    
   }, [classroomId]);
+  
+  
+  const handleCreateDiscussionBoard = async () => {
+    let wsResponse = await createDiscussionBoard(title, description, classroomId);
+    if(wsResponse.err){
+      message.error("Fail to create discussion");
+    }
+    else{
+      message.success("Successfully created discussion");
+      wsResponse = await getDiscussionBoard(classroomId);
+      setDiscussionBoardList(wsResponse.data);
+      setOpenState(false);
+    }
+  }
 
     
   const wsColumn = [
@@ -119,28 +82,27 @@ export default function DiscussionBoardTab({searchParams, setSearchParams, class
         key: 'delete',
         width: '10%',
         align: 'right',
-        render: (_, key) => key.created_at.substring(0, key.created_at.indexOf('T')),
-        // render: (_, key) => (
-          // <Popconfirm
-            // title={'Are you sure you want to delete this workspace?'}
-            // icon={<QuestionCircleOutlined style={{ color: 'red' }} />}
-            // onConfirm={async () => {
-              // const res = await deleteAuthorizedWorkspace(key.id);
-              // if (res.err) {
-                // message.error(res.err);
-              // } else {
-                // setWorkspaceList(
-                  // workspaceList.filter((ws) => {
-                    // return ws.id !== key.id;
-                  // })
-                // );
-                // message.success('Delete success');
-              // }
-            // }}
-          // >
-            // <button id={'link-btn'}>Delete</button>
-          // </Popconfirm>
-        // ),
+        render: (_, key) => (
+          <Popconfirm
+            title={'Are you sure you want to delete this discussion board?'}
+            icon={<QuestionCircleOutlined style={{ color: 'red' }} />}
+            onConfirm={async () => {
+              const res = await deleteDiscussionBoard(key.id);
+              if (res.err) {
+                message.error(res.err);
+              } else {
+                setDiscussionBoardList(
+                  discussionBoardList.filter((db) => {
+                    return db.id !== key.id;
+                  })
+                );
+                message.success('Delete success');
+              }
+            }}
+          >
+            <button id={'link-btn'}>Delete</button>
+          </Popconfirm>
+        ),
       },
   ];
 
@@ -149,8 +111,8 @@ export default function DiscussionBoardTab({searchParams, setSearchParams, class
       <div>
         <div id='page-header'>
           <div id="display-code-modal">
-            <button id="display-code-btn" onClick={handleCreateDiscussionBoard} style={{ fontSize: '1.5em' }}>
-
+            <button id="display-code-btn" onClick={() => {setOpenState(true)}}>
+              Create Discussion Board
             </button>
           </div>
           <h1>Disscussion Boards</h1>
@@ -164,13 +126,69 @@ export default function DiscussionBoardTab({searchParams, setSearchParams, class
             dataSource={discussionBoardList}
             rowClassName='editable-row'
             rowKey='id'
-            // onChange={(Pagination) => {
-              // setPage(Pagination.current);
-              // setSearchParams({ tab, page: Pagination.current });
-            // }}
-            // pagination={{ current: page ? page : 1 }}
+            onChange={(Pagination) => {
+              setPage(Pagination.current);
+              setSearchParams({ tab, page: Pagination.current });
+            }}
+            pagination={{ current: page ? page : 1 }}
           ></Table>
         </div>
+        
+        {openState &&      
+          <Modal
+          title="Create Discussion"
+          open={openState}
+          width="35vw"
+          onCancel={() => {setOpenState(false);}}
+          footer={null}
+          >
+            <Form
+              id="add-units"
+              labelCol={{
+                span: 6,
+              }}
+              wrapperCol={{
+                span: 14,
+              }}
+              onFinish={handleCreateDiscussionBoard}
+              layout="horizontal"
+              size="default"
+            >
+              <Form.Item id="form-label" label="Discussion Title">
+                <Input
+                  onChange={e => setTitle(e.target.value)}
+                  value={title}
+                  placeholder="Enter discussion title"
+                  required
+                />
+              </Form.Item>
+              <Form.Item id="form-label" label="Description">
+                <Input.TextArea
+                  rows={3}
+                  onChange={e => setDescription(e.target.value)}
+                  value={description}
+                  placeholder="Enter discussion description"
+                  required
+                />
+              </Form.Item>
+              <Form.Item
+                wrapperCol={{
+                  offset: 8,
+                  span: 16,
+                }}
+                style={{ marginBottom: "0px" }}
+              >
+                <Button
+                  type="primary"
+                  htmlType="submit"
+                  size="large"
+                  className="content-creator-button"
+                >
+                  Create
+                </Button>
+              </Form.Item>
+            </Form>
+          </Modal>}
       </div>
   )
 }
