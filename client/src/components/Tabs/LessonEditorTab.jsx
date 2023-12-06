@@ -15,10 +15,6 @@ import UnitEditor from '../../views/ContentCreator/UnitEditor/UnitEditor';
 import LessonEditor from '../../views/ContentCreator/LessonEditor/LessonEditor';
 import { useSearchParams } from 'react-router-dom';
 
-//import './LessonEditorTab.less';
-
-const { TabPane } = Tabs;
-
 export default function LessonEditorTab() {
   const [gradeList, setGradeList] = useState([]);
   const [learningStandardList, setLessonModuleList] = useState([]);
