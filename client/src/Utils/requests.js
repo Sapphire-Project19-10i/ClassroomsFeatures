@@ -695,7 +695,7 @@ export const createSyllabus = async (content, classroom) =>
     error: 'Unable to create syllabus.',
   });
   
-export const getSyllabus = async (id) =>
+export const getSyllabi = async (id) =>
   makeRequest({
     method: GET,
     path: `${server}/classroom/syllabi/${id}`,
@@ -703,10 +703,10 @@ export const getSyllabus = async (id) =>
     error: 'Unable to retrive syllabus.',
   });
   
-export const getSyllabi = async () =>
+export const getSyllabus = async (id) =>
   makeRequest({
     method: GET,
-    path: `${server}/syllabi`,
+    path: `${server}/syllabi/${id}`,
     auth: true,
     error: 'Unable to retrive syllabus.',
   });

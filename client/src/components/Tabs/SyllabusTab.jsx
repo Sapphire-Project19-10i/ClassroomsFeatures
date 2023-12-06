@@ -1,8 +1,8 @@
 import React, { useState, useEffect } from 'react';
 import TextEditor from '../TextEditor';
 import { message } from 'antd';
-import { createSyllabus, updateSyllabus, getSyllabus, getSyllabi } from '../../Utils/requests';
-import { sanitizeHTML } from '../Sanitizer';
+import { createSyllabus, updateSyllabus, getSyllabi } from '../../Utils/requests';
+import sanitizeHTML from '../Sanitizer';
 import './SyllabusTab.css';
 
 
@@ -18,19 +18,16 @@ export default function SyllabusTab({searchParams, setSearchParams, classroomId}
     const fetchData = async () => {
       let wsResponse;
       if(classroomId){
-        wsResponse = await getSyllabus(classroomId);
-      }
-      else{
-        wsResponse = await getSyllabi();
-      }
-            
-      if(wsResponse.data){
-        setSyllbusContent(wsResponse.data.content);
-        setSyllbusId(wsResponse.data.id);
-      }
-      else{
-        wsResponse = await createSyllabus('', classroomId);
-        setSyllbusId(wsResponse.data.id);
+        wsResponse = await getSyllabi(classroomId);
+        
+        if(wsResponse.data){
+          setSyllbusContent(wsResponse.data.content);
+          setSyllbusId(wsResponse.data.id);
+        }
+        else{
+          wsResponse = await createSyllabus('', classroomId);
+          setSyllbusId(wsResponse.data.id);
+        }
       }
     };
     fetchData();
@@ -62,7 +59,7 @@ export default function SyllabusTab({searchParams, setSearchParams, classroomId}
     <div>
       <div id='page-header'>
         <div id="display-code-modal">
-          <button id="display-code-btn" onClick={handleModifier} style={{ fontSize: '1.5em' }}>
+          <button id="display-code-btn" onClick={handleModifier} style={{ fontSize: '1.3em' }}>
             {modifier ? 'Save' : 'Modify'}
           </button>
         </div>

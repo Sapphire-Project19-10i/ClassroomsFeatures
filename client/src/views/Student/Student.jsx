@@ -1,4 +1,5 @@
 import { message } from 'antd';
+import SyllabusButton from './SyllabusButton';
 import React, { useEffect, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import NavBar from '../../components/NavBar/NavBar';
@@ -7,6 +8,7 @@ import './Student.less';
 
 function Student() {
   const [learningStandard, setLessonModule] = useState({});
+  const [syllabusId, setSyllabusId] = useState(0);
   const navigate = useNavigate();
 
   useEffect(() => {
@@ -16,6 +18,7 @@ function Student() {
         if (res.data) {
           if (res.data.lesson_module) {
             setLessonModule(res.data.lesson_module);
+            setSyllabusId(res.data.classroom.syllabus);
           }
         } else {
           message.error(res.err);
@@ -37,8 +40,9 @@ function Student() {
       <NavBar />
       <div id='activity-container'>
         <div id='header'>
-          <div>Select your Activity</div>
+          <div>Select your Activity!</div>
         </div>
+        <SyllabusButton id={syllabusId}/>
         <ul>
           {learningStandard.activities ? (
             learningStandard.activities
@@ -50,6 +54,7 @@ function Student() {
                   onClick={() => handleSelection(activity)}
                 >
                   <li>{`${learningStandard.name}: Activity ${activity.number}`}</li>
+                  
                 </div>
               ))
           ) : (
@@ -62,6 +67,7 @@ function Student() {
           )}
         </ul>
       </div>
+      
     </div>
   );
 }
