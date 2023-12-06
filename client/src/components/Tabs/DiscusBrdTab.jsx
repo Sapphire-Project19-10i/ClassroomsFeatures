@@ -1,17 +1,19 @@
 import React, { useState, useEffect } from 'react';
 import TextEditor from '../TextEditor';
 import { Modal, Button, Input, Form, Table, Popconfirm, message } from 'antd';
-import { createActivity } from '../../Utils/requests';
-
-function value(openState, setOpenState){
-    setOpenState(!openState);
-
-}
+import {createDiscussionBoard, getDiscussionBoards, getDiscussionBoard, getDiscussionPosts, getDiscussionPost } from '../../Utils/requests';
+import {} from '../../Utils/requests';
+import '../../../src/views/Home/Home.less';
 
 export default function DiscusBrdTab({searchParams, setSearchParams, classroomId}){
-   // const [visible, setVisible] = useState(false) 
+    const [visible, setVisible] = useState(false) 
     const [openState, setOpenState] = useState(false);
-    const [workspaceList, setWorkspaceList] = useState([]);
+    const [title, setTitle] = useState("");
+    const [description, setDescription] = useState("");
+    const [user, setUser] = useState("");
+    const [content, setContent] = useState("");
+    const [time, setTime] = useState("");
+
     const [tab, setTab] = useState(
       searchParams.has('tab') ? searchParams.get('tab') : 'home'
     );
@@ -19,93 +21,106 @@ export default function DiscusBrdTab({searchParams, setSearchParams, classroomId
       searchParams.has('page') ? parseInt(searchParams.get('page')) : 1
     );
     const handleSubmit = async e => {
-     // const res = await createActivity(number, name, standard, description, grade)
-    //  if (res.err) {
-    //    message.error("Fail to create a new discussion")
-   //   } else {
-    //    message.success("Successfully created discussion")
-    setOpenState(false)
-   //   }
+      const res = await createDiscussionBoard(title, content)
+      if (res.err) {
+        message.error("Fail to create a new discussion")
+      } else {
+        message.success("Successfully created discussion")
+        setOpenState(false)
+      }
     }
+    const listStyle = {
+      display: 'flex',
+      flexDirection: 'column',
+      alignItems: 'center',
+      width: '1500px',
+      height: '800px',
+      border: '1px solid #ccc',
+      padding: '20px',
+      textAlign: 'center',
+      marginTop: '100px',
+      marginLeft: '100px',
+      background: 'white'
+    };
+    const valueStyle = {
+      backgroundColor: 'teal',
+      color: 'white',
+      padding: '8px',
+      margin: '4px',
+      borderRadius: '4px',
+      borderBottom: '1px solid white',
+    };
+    
+    const postSubmit = async e => {
+      const res = await createDiscussionPost(title, description)
+      if (res.err) {
+        message.error("Fail to create a new discussion post")
+      } else {
+        message.success("Successfully created discussion post")
+        setOpenState(false)
+      }
+    }
+    function value(openState, setOpenState){
+      setOpenState(!openState);
+    }
+  
+
     const handleCancel = () => {
       setOpenState(false)
     }
-    const wsColumn = [
-      {
-        title: 'Name',
-        dataIndex: 'name',
-        key: 'name',
-        editable: true,
-        width: '30%',
-        align: 'left',
-        render: (_, key) => key.name,
-      },
-      {
-        title: 'Description',
-        dataIndex: 'description',
-        key: 'description',
-        editable: true,
-        width: '40%',
-        align: 'left',
-        render: (_, key) => key.description,
-      },
-      {
-        title: 'Student Responses',
-        dataIndex: 'open',
-        key: 'open',
-        editable: false,
-        width: '20%',
-        align: 'left',
-        render: (_, key) => (
-          <Link
-            onClick={() =>
-              localStorage.setItem('sandbox-activity', JSON.stringify(key))
-            }
-            to={'/sandbox'}
-          >
-            Open
-          </Link>
-        ),
-      },
-      {
-        title: 'Delete',
-        dataIndex: 'delete',
-        key: 'delete',
-        width: '10%',
-        align: 'right',
-        render: (_, key) => (
-          <Popconfirm
-            title={'Are you sure you want to delete this workspace?'}
-            icon={<QuestionCircleOutlined style={{ color: 'red' }} />}
-            onConfirm={async () => {
-              const res = await deleteAuthorizedWorkspace(key.id);
-              if (res.err) {
-                message.error(res.err);
-              } else {
-                setWorkspaceList(
-                  workspaceList.filter((ws) => {
-                    return ws.id !== key.id;
-                  })
-                );
-                message.success('Delete success');
+
+    useEffect(() => {
+      const fetchData = async () => {
+        let wsResponse = await getDiscussionBoards();
+        let list = document.getElementById('discusList');
+        
+        for(let i = 0; i < wsResponse.data.length; ++i){
+            let li = document.createElement('li');
+            let val = await getDiscussionBoard(Number(wsResponse.data[i].id));
+
+            li.title = JSON.stringify(val.data.title);
+            li.id = JSON.stringify(val.data.id);
+            li.description = JSON.stringify(val.data.description);
+            li.innerText = JSON.stringify(val.data.title) + JSON.stringify(val.data.description);
+            list.appendChild(li);
+            li.onclick = async() => {
+              let posts = await getDiscussionPosts();
+              for(let j = 0; j < posts.data.length; ++j){
+                let li1 = document.createElement('li');
+                let val1 = await getDiscussionPost(Number(posts.data[i].id));
+
+                list.title = JSON.stringify(val1.data.title);
+                li1.id = JSON.stringify(val1.data.id);
+                list.description = JSON.stringify(val1.data.description);
+                li1.innerText = JSON.stringify(val1.data.title) + JSON.stringify(val1.data.description);
+                list.appendChild(li1);
               }
-            }}
-          >
-            <button id={'link-btn'}>Delete</button>
-          </Popconfirm>
-        ),
-      },
-  ];
+            };
+        }
+        
+      };
+      fetchData();
+    }, [classroomId]);
+
+
 
       return (
+        
           <div>
-            <div id='page-header'>
-              <h1>Discussion Boards</h1>
-            </div>
+
+                <div id='page-header'>
+                    <h1>Discussion Boards</h1>
+                </div> 
             <div>
-              <button id ="testButton" onClick = {() => value(openState, setOpenState)} text = "Create">Create   
-              </button>
-            {!openState}
+
+              <div id="display-code-modal"> 
+                <button id="display-code-btn" onClick={() => value(openState, setOpenState)}>Create</button>
+              </div>
+
+              <div id="display-code-modal">
+                <button onClick={() => value(openState, setOpenState)}>Post</button>
+              </div>
+
             {openState &&      
             <Modal
         title="Create Discussion"
@@ -126,51 +141,20 @@ export default function DiscusBrdTab({searchParams, setSearchParams, classroomId
           layout="horizontal"
           size="default"
         >
-
-          <Form.Item id="form-label" label="Grade">
-            <select
-              id="grade-dropdown"
-              name="grade"
-            //  defaultValue={grade}
-              required
-            //  onChange={e => setGrade(e.target.value)}
-            >
-
-            </select>
-          </Form.Item>
-          <Form.Item id="form-label" label="Discussion Name">
+          <Form.Item id="form-label" label="Discussion Title">
             <Input
-            //  onChange={e => setName(e.target.value)}
-            //  value={name}
-              placeholder="Enter discussion name"
-              required
-            />
-          </Form.Item>
-          <Form.Item id="form-label" label="Discussion Number">
-            <Input
-            //  onChange={e => setNumber(e.target.value)}
-              type="number"
-            //  value={number}
-              placeholder="Enter discussion number"
-              min={1}
-              max={15}
+              onChange={e => setTitle(e.target.value)}
+              value={title}
+              placeholder="Enter discussion title"
               required
             />
           </Form.Item>
           <Form.Item id="form-label" label="Description">
             <Input.TextArea
               rows={3}
-            //  onChange={e => setDescription(e.target.value)}
-           //   value={description}
+              onChange={e => setDescription(e.target.value)}
+              value={description}
               placeholder="Enter discussion description"
-              required
-            />
-          </Form.Item>
-          <Form.Item id="form-label" label="Standards">
-            <Input
-            //  onChange={e => setStandard(e.target.value)}
-            //  value={standard}
-              placeholder="Enter discussion standards"
               required
             />
           </Form.Item>
@@ -200,19 +184,19 @@ export default function DiscusBrdTab({searchParams, setSearchParams, classroomId
         </Form>
         </Modal>}
           
-            <Table
-              columns={wsColumn}
-              dataSource={workspaceList}
-              rowClassName='editable-row'
-              rowKey='id'
-              onChange={(Pagination) => {
-                setPage(Pagination.current);
-                setSearchParams({ tab, page: Pagination.current });
-              }}
-              pagination={{ current: page ? page : 1 }}
-            ></Table>
-            </div>
-  
+            </div>   
+            
+            <div style = {listStyle}> 
+              <ul id = "discusList" style = {valueStyle}> 
+
+              </ul>
+
+
+            </div>  
+
           </div>
+
+          
+
       ) 
   }
