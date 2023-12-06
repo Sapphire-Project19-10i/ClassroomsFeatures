@@ -18,8 +18,8 @@
       "type": "string"
     },
     "discussion_board": {
-      "model": "discussion-board",
-      "via": "discussion_posts"
+      "via": "discussion_posts",
+      "model": "discussion-board"
     }
   }
 }
