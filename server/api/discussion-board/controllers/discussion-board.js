@@ -8,7 +8,7 @@
 module.exports = {
   async discussion_posts(ctx) {
     const { id } = ctx.params;
-    const discussion = await strapi.services.discussion-board.findOne({id: id});
+    const discussion = await strapi.services['discussion-board'].findOne({id: id});
     // check if the discussion exists
     let response;
     if (discussion) {
