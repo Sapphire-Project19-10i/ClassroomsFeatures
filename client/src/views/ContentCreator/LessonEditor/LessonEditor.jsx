@@ -19,26 +19,29 @@ export default function LessonEditor({
 }) {
   const [visible, setVisible] = useState(false)
   const [name, setName] = useState(learningStandard.name)
-  const [description, setDescription] = useState("")
+  const [expectations, setExpectations] = useState("")
   const [standards, setStandards] = useState("")
   const [link, setLink] = useState("")
   const [linkError, setLinkError] = useState(false)
   const [displayName, setDisplayName] = useState(learningStandard.name)
   const [releaseDate, setReleaseDate] = useState(null);
   const [closeDate, setCloseDate] = useState(null);
-  // eslint-disable-next-line
   const [_, setSearchParams] = useSearchParams()
 
+  const [loading, setLoading] = useState(false);
+
   const showModal = async () => {
+    setLoading(true);
     setVisible(true)
     const res = await getLessonModule(learningStandard.id)
     setName(res.data.name)
-    setDescription(res.data.expectations)
+    setExpectations(res.data.expectations)
     setStandards(res.data.standards)
     setLink(res.data.link)
     setReleaseDate(res.data.releaseDate ? moment(res.data.releaseDate) : null);
     setCloseDate(res.data.closeDate ? moment(res.data.closeDate) : null);
     setLinkError(false)
+    setLoading(false);
   }
 
   useEffect(() => {
@@ -61,7 +64,7 @@ export default function LessonEditor({
     const response = await updateLessonModule(
       learningStandard.id,
       name,
-      description,
+      expectations,
       standards,
       link,
       releaseDate,
@@ -119,15 +122,23 @@ export default function LessonEditor({
               placeholder="Enter lesson name"
             />
           </Form.Item>
-          <Form.Item id="form-label" label="Description">
-            <TextEditor
+          {loading ? (
+            <p>Loading...</p>
+          ) : (
+            <Form.Item id="form-label" label="Expectations">
+              <TextEditor
                 rows={3}
                 required
-                onChange={e => setDescription("<h1>helloworld</h1>")}
-                value={description}
+                onChange={(plainText) => {
+                  console.log("New description value:", plainText);
+                  setExpectations(plainText);
+                }}
+                value={expectations}
                 placeholder="Enter lesson description"
+                initialContent={expectations}
               />
-          </Form.Item>
+            </Form.Item>
+          )}
           <Form.Item id="form-label" label="Standards">
             <Input
               onChange={e => setStandards(e.target.value)}

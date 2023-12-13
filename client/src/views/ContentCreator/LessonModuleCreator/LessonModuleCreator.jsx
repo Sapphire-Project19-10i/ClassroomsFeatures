@@ -19,7 +19,7 @@ export default function LessonModuleCreator({
   const [visible, setVisible] = useState(false)
   const [unitList, setUnitList] = useState([])
   const [name, setName] = useState("")
-  const [description, setDescription] = useState("")
+  const [expectations, setExpectations] = useState("")
   const [unit, setUnit] = useState("")
   const [numOfActivityLevels, setNumOfActivityLevels] = useState("")
   const [standards, setStandards] = useState("")
@@ -44,7 +44,7 @@ export default function LessonModuleCreator({
   const showModal = async () => {
     const res = await getAllUnits()
     setUnitList(res.data)
-    setDescription("")
+    setExpectations("")
     setName("")
     setStandards("")
     setLink("")
@@ -70,7 +70,7 @@ export default function LessonModuleCreator({
     }
     setLinkError(false)
     const res = await createLessonModule(
-      description,
+      expectations,
       name,
       0,
       unit,
@@ -178,15 +178,20 @@ export default function LessonModuleCreator({
               max={10}
             />
           </Form.Item>
-          <Form.Item label="Description">
-            <TextEditor
-              rows={3}
-              required
-              onChange={e => setDescription(e.target.value)}
-              value={description}
-              placeholder="Enter lesson description"
-            />
-          </Form.Item>
+
+            <Form.Item id="form-label" label="Expectations">
+              <TextEditor
+                rows={3}
+                required
+                onChange={(plainText) => {
+                  console.log("New description value:", plainText);
+                  setExpectations(plainText);
+                }}
+                value={expectations}
+                placeholder="Enter lesson expectations"
+              />
+            </Form.Item>
+
           <Form.Item label="Standards">
             <Input
               onChange={e => {
