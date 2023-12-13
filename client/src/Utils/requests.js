@@ -371,6 +371,7 @@ export const deleteLessonModule = async (id) =>
   });
 
 export const createLessonModule = async (
+  expectations,
   name,
   number,
   unit,
@@ -383,6 +384,7 @@ export const createLessonModule = async (
     method: POST,
     path: `${server}/lesson-modules`,
     data: {
+      expectations,
       name,
       number,
       unit,
