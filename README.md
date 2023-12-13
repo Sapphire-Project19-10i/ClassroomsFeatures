@@ -1,3 +1,43 @@
+# Classroom Features: Group 10i 
+## Final Documentation Part 2
+### Tasks 
+- [x] Update the database and STRAPI dump files in your file directory
+- [x] Update ReadMe
+
+### List of all project features implemented and associated screenshots of features developed
+![](https://cdn.discordapp.com/attachments/1162461689489404026/1184596532033499186/Screenshot_2023-12-13_151001.png?ex=658c8c7d&is=657a177d&hm=457ffc21fff1eed7353483c86638de201c695f0f45289b9016b5a2ab47db2943&)
+![]()
+![]()
+
+### Instructions for how to run the project locally 
+```
+git clone https://github.com/Sapphire-Project19-10i/ClassroomsFeatures.git
+cd ClassroomFeatures
+```
+Follow the [client](/client#setup) setup
+```
+cd client
+yarn start
+```
+Install [docker](https://docs.docker.com/get-docker/)
+From a new terminal in the /ClassroomFeatures directory run
+```
+docker compose up
+```
+
+### How to update database and server connections
+- insert here
+
+### Outstanding work (un-completed tasks)
+- insert here
+- insert here
+  
+### Built Upon
+#### [Draft.js](https://draftjs.org/)
+- Helped us to build the rich text editor 
+
+<br/>
+
 # CaSMM
 
 > Computation and Science Modeling through Making
