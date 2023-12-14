@@ -5,9 +5,18 @@
 - [x] Update ReadMe
 
 ### List of all project features implemented and associated screenshots of features developed
-![](https://cdn.discordapp.com/attachments/1162461689489404026/1184596532033499186/Screenshot_2023-12-13_151001.png?ex=658c8c7d&is=657a177d&hm=457ffc21fff1eed7353483c86638de201c695f0f45289b9016b5a2ab47db2943&)
-![]()
-![]()
+Feature 1: Discussion Board Creation/Management
+![](https://cdn.discordapp.com/attachments/1162461689489404026/1184704218439876718/image.png?ex=658cf0c8&is=657a7bc8&hm=ab288e2224b5c382786a13c8575bac38c20bf4373c8cd876851f65c592444043&)
+![](https://cdn.discordapp.com/attachments/1162461689489404026/1184704294356791316/image.png?ex=658cf0da&is=657a7bda&hm=e0392a1a474b16c7131d572cfd1a5451ce7db478d564ca0a0a247e0604f8d8fd&)
+
+Feature 2: Syllabus
+![](https://cdn.discordapp.com/attachments/1162461689489404026/1184704360089911376/image.png?ex=658cf0ea&is=657a7bea&hm=684978b99931436778fc69fdc01fd1310cc0c567db1f96448042ef4a24f6a448&)
+![](https://cdn.discordapp.com/attachments/1162461689489404026/1184704464838475867/image.png?ex=658cf103&is=657a7c03&hm=bf4f9490ff08e6d53822032ce44a2a2aac12e91ab9f298a2889cfb44756e0095&)
+![](https://cdn.discordapp.com/attachments/1162461689489404026/1184704537957769258/image.png?ex=658cf114&is=657a7c14&hm=9d619b1ba3c50be6c69c6d2b831fffce6754964809d2c2a71ffb8e80bb00d558&)
+
+Feature 3: Lesson Creator/Editor
+![](https://cdn.discordapp.com/attachments/1162461689489404026/1184704607792943224/image.png?ex=658cf125&is=657a7c25&hm=c5ba9c9d3168332eda44c99c51a3f4a6ca4f1b06422fdc165f68da452296661c&)
+![](https://cdn.discordapp.com/attachments/1162461689489404026/1184704683122626641/image.png?ex=658cf137&is=657a7c37&hm=d02c198281002f6342edb3578b8e98b68d465a4f277f444d46a97b21e7534527&)
 
 ### Instructions for how to run the project locally 
 ```
@@ -25,13 +34,6 @@ From a new terminal in the /ClassroomFeatures directory run
 docker compose up
 ```
 
-### How to update database and server connections
-- insert here
-
-### Outstanding work (un-completed tasks)
-- insert here
-- insert here
-  
 ### Built Upon
 #### [Draft.js](https://draftjs.org/)
 - Helped us to build the rich text editor 
